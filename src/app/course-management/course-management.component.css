@@ -1,0 +1,32 @@
+/* course-management.component.css */
+.dashboard {
+    background-color: #2E5C9A;
+    color: white;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+}
+.button {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-top: 10px;
+    display: block;
+    text-decoration: none;
+}
+.courses {
+    margin-bottom: 20px;
+}
+.progress-bar {
+    background-color: grey;
+    height: 20px;
+}
+.progress-bar div {
+    background-color: green;
+    height: inherit; 
+}
+.course-link {
+    color: white;
+    text-decoration: none;
+}
