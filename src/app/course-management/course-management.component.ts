@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./course-management.component.css']
 })
 export class CourseManagementComponent {
-  userType: string = 'Student'; // Change to 'instructor' for instructor dashboard
+  userType: string = 'Instructor'; // Change to 'instructor' for instructor dashboard
 
   // You can add more logic here if needed
 }
