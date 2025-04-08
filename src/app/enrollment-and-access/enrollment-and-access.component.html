@@ -1,0 +1,29 @@
+<p>enrollment-and-access works!</p>
+<div class="enrollment-container">
+    <h1>Enrollments</h1>
+    <div *ngIf="enrollments.length > 0">
+      <table>
+        <thead>
+          <tr>
+            <th>Enrollment ID</th>
+            <th>Course ID</th>
+            <th>Title</th>
+            <th>User ID</th>
+            <th>Enrollment Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let enrollment of enrollments">
+            <td>{{ enrollment.EnrollmentID }}</td>
+            <td>{{ enrollment.CourseID }}</td>
+            <td>{{ enrollment.Title }}</td>
+            <td>{{ enrollment.UserID }}</td>
+            <td>{{ enrollment.EnrollmentDate | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="enrollments.length === 0">
+      <p>No enrollments found.</p>
+    </div>
+  </div>
