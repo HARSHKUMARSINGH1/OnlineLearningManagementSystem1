@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CourseManagementComponent } from './course-management/course-management.component';
+import { TrackStudentProgressComponent } from './track-student-progress/track-student-progress.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CourseManagementComponent
+    TrackStudentProgressComponent // Ensure this component is declared
   ],
   imports: [
     BrowserModule,

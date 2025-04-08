@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { CourseManagementComponent } from './course-management/course-management.component';
-
+import { TrackStudentProgressComponent } from './track-student-progress/track-student-progress.component';
 const routes: Routes = [
   { path: '', component: AppComponent },
-  { path: 'course-management', component: CourseManagementComponent }
+  { path: 'track-student-progress', component: TrackStudentProgressComponent }
 ];
 
 @NgModule({
