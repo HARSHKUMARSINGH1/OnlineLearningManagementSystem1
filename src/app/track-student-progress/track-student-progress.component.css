@@ -1,0 +1,56 @@
+html, body {
+    height: 100%;
+    margin: 0; /* Remove default margins */
+  }
+  
+  body {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    background-color: #f6efef; /* Optional: Background for visual appeal */
+  }
+  
+  .track-student-progress {
+    text-align: center; /* Centers the text content inside the container */
+    padding: 20px;
+    border: 1px solid #ccc; /* Adds a border around the form */
+    border-radius: 8px; /* Rounds corners for a softer look */
+    background-color: #c3de2985; /* Background color for the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Creates a subtle shadow effect */
+  }
+  
+  .track-progress form {
+    margin-top: 20px;
+  }
+  
+  .track-progress form div {
+    margin-bottom: 15px; /* Adds space between fields */
+  }
+  
+  .track-progress form label {
+    display: block; /* Ensures labels stack properly above input fields */
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .track-progress form input {
+    width: 250px; /* Sets a reduced width for input fields */
+    padding: 10px;
+    border: 1px solid #a2a0a0;
+    border-radius: 4px;
+  }
+  
+  .track-progress form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .track-progress form button:hover {
+    background-color: #0056b3;
+  }
+  
