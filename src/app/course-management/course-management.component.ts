@@ -33,7 +33,33 @@ export class CourseManagementComponent implements OnInit {
     this.selectedCourse = this.courses.find(course => course.courseID === courseId) || null;
   }
 
-  navigateToAddCourse(): void {
-    this.router.navigate(['/add-course']);
+  enrollInCourse(): void {
+    if (this.selectedCourse) {
+      this.courseService.enrollInCourse(this.selectedCourse.courseID).subscribe(
+        (response) => {
+          alert('Enrolled in course successfully');
+        },
+        (error) => {
+          alert('Failed to enroll in course. Please try again later.');
+        }
+      );
+    }
+  }
+
+  
+
+  
+updateCourse(): void {
+    if (this.selectedCourse) {
+      this.router.navigate(['/update-course', this.selectedCourse.courseID]);
+    }
+  }
+  
+    
+  
+
+  // Placeholder method for deleteCourse
+  deleteCourse(): void {
+    // Logic to be implemented later
   }
 }

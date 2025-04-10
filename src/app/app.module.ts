@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { CourseManagementComponent } from 'src/app/course-management/course-management.component';
 import { CourseManagementService } from './services/course-management.service';
 import { AddCourseComponent } from './add-course/add-course.component';
+import { UpdateCourseComponent } from './update-course/update-course.component';
 
 // Define routes
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     CourseManagementComponent,
-    AddCourseComponent
+    AddCourseComponent,
+    UpdateCourseComponent
   ],
   imports: [
     BrowserModule,

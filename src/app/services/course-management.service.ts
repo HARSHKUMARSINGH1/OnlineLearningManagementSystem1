@@ -9,8 +9,10 @@ import { UpdateCourse } from 'src/app/models/update-course.model';
   providedIn: 'root'
 })
 export class CourseManagementService {
-  private getAllCourseUrl = 'https://localhost:7256/api/CourseManagement'; // API URL to get all course
-  private addCourseUrl = 'https://localhost:7256/api/CourseManagement'; // New API URL for adding a course
+  private getAllCourseUrl = 'https://localhost:7256/api/CourseManagement'; // API URL to get all courses
+  private addCourseUrl = 'https://localhost:7256/api/CourseManagement'; // API URL for adding a course
+  private enrollCourseUrl = 'https://localhost:7256/api/CourseManagement/enroll'; // API URL for enrolling in a course
+  private updateURL = 'https://localhost:7256/api/CourseManagement'; // To Update Course
 
   constructor(private http: HttpClient) { }
 
@@ -30,7 +32,11 @@ export class CourseManagementService {
     return this.http.delete<void>(`${this.getAllCourseUrl}/${id}`);
   }
 
-  updateCourse(id: number, updateCourse: UpdateCourse): Observable<ICourse> {
-    return this.http.put<ICourse>(`${this.getAllCourseUrl}/${id}`, updateCourse);
+  updateCourse(id: number, updateCourse: UpdateCourse): Observable<UpdateCourse> {
+    return this.http.put<UpdateCourse>(`${this.updateURL}/${id}`, updateCourse);
+  }
+
+  enrollInCourse(courseId: number): Observable<any> {
+    return this.http.post(`${this.enrollCourseUrl}/${courseId}`, {});
   }
 }
