@@ -1,0 +1,29 @@
+header {
+    background-color: #000000; /* Blue background */
+    padding: 10px 0;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  nav a, nav button {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  nav a:hover, nav button:hover {
+    text-decoration: underline;
+  }
