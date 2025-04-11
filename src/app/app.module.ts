@@ -1,7 +1,22 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router'; // Import RouterModule
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CourseManagementComponent } from 'src/app/course-management/course-management.component';
+import { CourseManagementService } from './services/course-management.service';
+import { AddCourseComponent } from './add-course/add-course.component';
+import { UpdateCourseComponent } from './update-course/update-course.component';
+
+// Define routes
+const routes: Routes = [
+  { path: 'course-management', component: CourseManagementComponent },
+  { path: 'add-course', component: AddCourseComponent },
+  { path: '', redirectTo: '/course-management', pathMatch: 'full' }
+];
 import { AuthModule } from './auth/auth.module';
 import { FormsModule } from '@angular/forms';
 import { CourseManagementComponent } from './course-management/course-management.component';
@@ -19,6 +34,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     CourseManagementComponent,
+    AddCourseComponent,
+    UpdateCourseComponent
+    CourseManagementComponent,
     FooterComponent,
     HeaderComponent,
     ViewProfileComponent,
@@ -26,6 +44,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot(routes) // Add RouterModule here
     AuthModule,
     FormsModule,
     AppRoutingModule,
@@ -34,6 +55,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     
     
   ],
+  providers: [CourseManagementService],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorInterceptor,
