@@ -1,29 +1,36 @@
-<p>enrollment-and-access works!</p>
 <div class="enrollment-container">
-    <h1>Enrollments</h1>
-    <div *ngIf="enrollments.length > 0">
-      <table>
-        <thead>
-          <tr>
-            <th>Enrollment ID</th>
-            <th>Course ID</th>
-            <th>Title</th>
-            <th>User ID</th>
-            <th>Enrollment Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let enrollment of enrollments">
-            <td>{{ enrollment.EnrollmentID }}</td>
-            <td>{{ enrollment.CourseID }}</td>
-            <td>{{ enrollment.Title }}</td>
-            <td>{{ enrollment.UserID }}</td>
-            <td>{{ enrollment.EnrollmentDate | date }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div *ngIf="enrollments.length === 0">
-      <p>No enrollments found.</p>
-    </div>
+  <h1>Student Enrollment</h1>
+  <form (ngSubmit)="onSubmit()">
+    <label for="studentId">Enter Student ID:</label>
+    <input type="number" id="studentId" [(ngModel)]="userId" name="studentId" required>
+    <button type="submit">Submit</button>
+  </form>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <div *ngIf="enrollments.length > 0">
+    <h2>Enrolled Courses</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Enrollment ID</th>
+          <th>Course ID</th>
+          <th>Title</th>
+          <th>User ID</th>
+          <th>Enrollment Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let enrollment of enrollments">
+          <td>{{ enrollment.enrollmentID }}</td>
+          <td>{{ enrollment.courseID }}</td>
+          <td>{{ enrollment.title }}</td>
+          <td>{{ enrollment.userID }}</td>
+          <td>{{ enrollment.enrollmentDate | date }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+  <div *ngIf="enrollments.length === 0 && !errorMessage">
+    <p>No enrollments found.</p>
+  </div>
+  
+</div>

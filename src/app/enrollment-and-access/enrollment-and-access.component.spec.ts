@@ -1,21 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { EnrollmentComponent } from './enrollment-and-access.component';
-import { EnrollmentService } from './enrollment.service';
+import { EnrollmentAndAccessComponent } from './enrollment-and-access.component';
+import { EnrollmentAndAccessService } from '../services/enrollment-and-access.service';
 import { of } from 'rxjs';
 
-describe('EnrollmentComponent', () => {
-  let component: EnrollmentComponent;
-  let fixture: ComponentFixture<EnrollmentComponent>;
-  let enrollmentService: EnrollmentService;
+describe('EnrollmentAndAccessComponent', () => {
+  let component: EnrollmentAndAccessComponent;
+  let fixture: ComponentFixture<EnrollmentAndAccessComponent>;
+  let enrollmentService: EnrollmentAndAccessService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EnrollmentComponent ],
+      declarations: [ EnrollmentAndAccessComponent ],
       providers: [
         {
-          provide: EnrollmentService,
+          provide: EnrollmentAndAccessService,
           useValue: {
-            getAllEnrollments: () => of([])
+            getAllEnrollments: () => of([]),
+            getEnrollmentsByUserId: () => of([]) // Add this to mock the method used in the component
           }
         }
       ]
@@ -24,9 +25,9 @@ describe('EnrollmentComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EnrollmentComponent);
+    fixture = TestBed.createComponent(EnrollmentAndAccessComponent);
     component = fixture.componentInstance;
-    enrollmentService = TestBed.inject(EnrollmentService);
+    enrollmentService = TestBed.inject(EnrollmentAndAccessService);
     fixture.detectChanges();
   });
 
@@ -35,8 +36,8 @@ describe('EnrollmentComponent', () => {
   });
 
   it('should fetch enrollments on init', () => {
-    spyOn(enrollmentService, 'getAllEnrollments').and.returnValue(of([]));
+    spyOn(enrollmentService, 'getEnrollmentsByUserId').and.returnValue(of([]));
     component.ngOnInit();
-    expect(enrollmentService.getAllEnrollments).toHaveBeenCalled();
+    expect(enrollmentService.getEnrollmentsByUserId).toHaveBeenCalled();
   });
 });
