@@ -14,6 +14,7 @@ import { UpdateCourseComponent } from './update-course/update-course.component';
 const routes: Routes = [
   { path: 'course-management', component: CourseManagementComponent },
   { path: 'add-course', component: AddCourseComponent },
+  { path: 'update-course/:id', component: UpdateCourseComponent }, // Add this route
   { path: '', redirectTo: '/course-management', pathMatch: 'full' }
 ];
 
@@ -22,7 +23,7 @@ const routes: Routes = [
     AppComponent,
     CourseManagementComponent,
     AddCourseComponent,
-    UpdateCourseComponent
+    UpdateCourseComponent,
   ],
   imports: [
     BrowserModule,

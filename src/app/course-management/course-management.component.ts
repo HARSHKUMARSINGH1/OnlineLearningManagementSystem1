@@ -32,6 +32,16 @@ export class CourseManagementComponent implements OnInit {
     const courseId = Number(selectElement.value);
     this.selectedCourse = this.courses.find(course => course.courseID === courseId) || null;
   }
+  
+
+  // Navigate to the update course page with the selected course ID
+ 
+navigateToUpdateCourse(): void {
+    if (this.selectedCourse) {
+      this.router.navigate(['/update-course', this.selectedCourse.courseID]);
+    }
+  }
+  
 
   enrollInCourse(): void {
     if (this.selectedCourse) {
@@ -45,18 +55,6 @@ export class CourseManagementComponent implements OnInit {
       );
     }
   }
-
-  
-
-  
-updateCourse(): void {
-    if (this.selectedCourse) {
-      this.router.navigate(['/update-course', this.selectedCourse.courseID]);
-    }
-  }
-  
-    
-  
 
   // Placeholder method for deleteCourse
   deleteCourse(): void {

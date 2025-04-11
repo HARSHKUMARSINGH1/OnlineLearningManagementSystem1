@@ -23,18 +23,23 @@ export class AddCourseComponent {
     console.log('Submitting course:', this.addCourse); // Debugging statement
     this.courseService.addCourse(this.addCourse).subscribe(
       (response) => {
-        alert("Course Added Successfully")
+        alert("Course Added Successfully");
         console.log('Course added successfully', response);
         this.router.navigate(['/course-management']); // Navigate back to course management page
-        this.addCourse.title = "";//This all empty entries are to empty fields after submitting the form
-        this.addCourse.instructorID =0;
-        this.addCourse.syllabus="";
-        this.addCourse.description="";
-        this.addCourse.preRequisites="";
+        this.addCourse.title = ""; // Clear form fields after submission
+        this.addCourse.instructorID = 0;
+        this.addCourse.syllabus = "";
+        this.addCourse.description = "";
+        this.addCourse.preRequisites = "";
       },
       (error) => {
         console.error('Error adding course', error);
       }
     );
   }
+  
+    navigateBack(): void {
+        this.router.navigate(['/course-management']);
+      }
+    
 }
