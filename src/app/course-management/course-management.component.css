@@ -43,3 +43,16 @@
 .enroll-btn:hover, .update-btn:hover {
   background-color: #0056b3; /* Darker blue on hover */
 }
+.delete-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.delete-btn:hover {
+  background-color: darkred;
+}
+

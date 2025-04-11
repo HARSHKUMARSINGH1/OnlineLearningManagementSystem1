@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ICourse } from '../models/course-model'; // Ensure this path is correct
 import { AddCourse } from 'src/app/models/add-course.model';
 import { UpdateCourse } from 'src/app/models/update-course.model'; 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +13,7 @@ export class CourseManagementService {
   private addCourseUrl = 'https://localhost:7256/api/CourseManagement'; // API URL for adding a course
   private enrollCourseUrl = 'https://localhost:7256/api/CourseManagement/enroll'; // API URL for enrolling in a course
   private updatecourseUrl = 'https://localhost:7256/api/CourseManagement';
+
   constructor(private http: HttpClient) { }
 
   getAllCourses(): Observable<ICourse[]> {
@@ -30,11 +32,9 @@ export class CourseManagementService {
     return this.http.delete<void>(`${this.getAllCourseUrl}/${id}`);
   }
 
-  
-updateCourse(courseId: number, course: UpdateCourse): Observable<any> {
-      return this.http.put(`${this.updatecourseUrl}/${courseId}`, course);
-    }
-  
+  updateCourse(courseId: number, course: UpdateCourse): Observable<any> {
+    return this.http.put(`${this.updatecourseUrl}/${courseId}`, course);
+  }
 
   enrollInCourse(courseId: number): Observable<any> {
     return this.http.post(`${this.enrollCourseUrl}/${courseId}`, {});
