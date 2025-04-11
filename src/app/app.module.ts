@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router'; // Import RouterModule
-
+import { UpdateCourseComponent } from './update-course/update-course.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CourseManagementComponent } from 'src/app/course-management/course-management.component';
@@ -37,7 +37,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     HeaderComponent,
     ViewProfileComponent,
-    UpdateProfileComponent
+    UpdateProfileComponent,
+    UpdateCourseComponent
   ],
   imports: [
     BrowserModule,

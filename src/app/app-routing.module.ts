@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path : 'course-management', component: CourseManagementComponent },
   { path: 'profile', component: ViewProfileComponent },
-  { path: 'update-profile', component: UpdateProfileComponent }
+  { path: 'update-profile', component: UpdateProfileComponent },
   { path: 'update-course/:id', component: UpdateCourseComponent },
   { path: '', redirectTo: '/course-management', pathMatch: 'full' }
 ];

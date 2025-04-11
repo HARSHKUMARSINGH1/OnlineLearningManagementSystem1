@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CourseManagementService } from 'src/app/services/course-management.service';
 import { UpdateCourse } from 'src/app/models/update-course.model';
-
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-update-course',
   templateUrl: './update-course.component.html',
