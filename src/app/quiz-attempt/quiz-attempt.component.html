@@ -1,0 +1,29 @@
+<div>
+    <h2>Quiz Attempts</h2>
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Response</th>
+          <th>Marks</th>
+          <th>Quiz ID</th>
+          <th>User ID</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let answer of answers">
+          <td>{{ answer.answerID }}</td>
+          <td>{{ answer.response }}</td>
+          <td>{{ answer.marks }}</td>
+          <td>{{ answer.quizID }}</td>
+          <td>{{ answer.userID }}</td>
+          <td>
+            <button (click)="deleteAnswer(answer.answerID)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
