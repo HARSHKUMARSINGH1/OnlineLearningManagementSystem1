@@ -15,6 +15,7 @@ import { AddCourseComponent } from './add-course/add-course.component';
 const routes: Routes = [
   { path: 'course-management', component: CourseManagementComponent },
   { path: 'add-course', component: AddCourseComponent },
+  { path: 'update-course/:id', component: UpdateCourseComponent }, // Add this route
   { path: '', redirectTo: '/course-management', pathMatch: 'full' }
 ];
 import { AuthModule } from './auth/auth.module';

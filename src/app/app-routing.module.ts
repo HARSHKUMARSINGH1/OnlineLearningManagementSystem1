@@ -10,6 +10,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { ViewProfileComponent } from './user/viewprofile/viewprofile.component';
 import { UpdateProfileComponent } from './user/updateprofile/updateprofile.component';
 import { AuthGuard } from './authguard';
+import { UpdateCourseComponent } from 'src/app/update-course/update-course.component'
 
 const routes: Routes = [
   { path: 'course-management', component: CourseManagementComponent,canActivate: [AuthGuard] }, // Add your AuthGuard here
@@ -22,6 +23,8 @@ const routes: Routes = [
   { path : 'course-management', component: CourseManagementComponent },
   { path: 'profile', component: ViewProfileComponent },
   { path: 'update-profile', component: UpdateProfileComponent }
+  { path: 'update-course/:id', component: UpdateCourseComponent },
+  { path: '', redirectTo: '/course-management', pathMatch: 'full' }
 ];
 
 @NgModule({

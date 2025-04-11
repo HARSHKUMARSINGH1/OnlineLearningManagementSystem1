@@ -8,18 +8,15 @@
   <div *ngIf="userType === 'Student'" class="student-dashboard">
     <div class="courses-section">
       <h3>COURSES</h3>
-      <select [(ngModel)]="selectedCourse" (change)="onCourseSelected($event)" class="course-dropdown">
-        <option *ngFor="let course of courses" [value]="course.courseID">{{ course.title }}</option>
-      </select>
-    </div>
-    <div *ngIf="selectedCourse">
-      <h3>Course Details</h3>
-      <p>Title: {{ selectedCourse.title }}</p>
-      <p>Description: {{ selectedCourse.description }}</p>
-      <p>Syllabus: {{ selectedCourse.syllabus }}</p>
-      <p>Instructor ID: {{ selectedCourse.instructorID }}</p>
-      <p>Prerequisites: {{ selectedCourse.preRequisites }}</p>
-      <button class="enroll-btn" (click)="enrollInCourse()">+ENROLL</button>
+      <div class="course-container">
+        <div *ngFor="let course of courses" class="course-card">
+          <h3>{{ course.title }}</h3>
+          <p><strong>Description:</strong> {{ course.description }}</p>
+          <p><strong>Syllabus:</strong> {{ course.syllabus }}</p>
+          <p><strong>Prerequisites:</strong> {{ course.preRequisites }}</p>
+          <button class="enroll-btn">ENROLL</button>
+        </div>
+      </div>
     </div>
     <button class="progress-btn">Progress tracking</button>
     <div class="top-right-corner">
@@ -36,25 +33,24 @@
     </div>
   </div>
 
-  INSTRUCTOR DASHBOARD
-  <div *ngIf="userType === 'Instructor'" class="instructor-dashboard">
-    <div class="courses-section">
-      <h3>COURSES</h3>
-      <select [(ngModel)]="selectedCourse" (change)="onCourseSelected($event)" class="course-dropdown">
-        <option *ngFor="let course of courses" [value]="course.courseID">{{ course.title }}</option>
-      </select>
-    </div>
-    <div *ngIf="selectedCourse">
-      <h3>Course Details</h3>
-      <p>Title: {{ selectedCourse.title }}</p>
-      <p>Description: {{ selectedCourse.description }}</p>
-      <p>Syllabus: {{ selectedCourse.syllabus }}</p>
-      <p>Instructor ID: {{ selectedCourse.instructorID }}</p>
-      <p>Prerequisites: {{ selectedCourse.preRequisites }}</p>
-      <div class="button-group">
-        <button class="update-btn" routerLink="/update-course">Update</button></div>
-    </div>
-    <button class="create-quiz-btn">+ Create Quiz</button>
-    <button class="create-course-btn" [routerLink]="['/add-course']">+ Create course</button>
+  <!-- INSTRUCTOR DASHBOARD -->
+  
+<div *ngIf="userType === 'Instructor'" class="instructor-dashboard">
+    <div class="courses-section">
+      <h3>COURSES</h3>
+      <div class="course-container">
+        <div *ngFor="let course of courses" class="course-card">
+          <h3>{{ course.title }}</h3>
+          <p><strong>Description:</strong> {{ course.description }}</p>
+          <p><strong>Syllabus:</strong> {{ course.syllabus }}</p>
+          <p><strong>Prerequisites:</strong> {{ course.preRequisites }}</p>
+          <p><strong>Instructor ID:</strong> {{ course.instructorID }}</p>
+          <button class="update-btn" [routerLink]="['/update-course', course.courseID]">Update</button>
+          <button (click)="confirmDelete(course)" class="delete-btn">Delete</button>
+        </div>
+      </div>
+    </div>
+    <button class="create-quiz-btn">+ Create Quiz</button>
+    <button class="create-course-btn" [routerLink]="['/add-course']">+ Create course</button>
   </div>
-</div>
+  
