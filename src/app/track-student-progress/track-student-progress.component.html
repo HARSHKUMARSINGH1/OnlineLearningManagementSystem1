@@ -1,16 +1,40 @@
-<div class="track-student-progress">
-    <h1>Online Learning Management System</h1>
+<div class="track-student-progress-container">
+  <h1 class="header-title">Track Student Progress</h1>
   
-    <div class="track-progress">
-      <h2>Track Progress</h2>
-      <form>
-         
-        <div>
-            <label for="user-id">User ID: </label>
-            <input type="number" id="user-id" name="user-id" required>
-        </div>
+  <form (submit)="trackProgress(); $event.preventDefault()" class="track-form">
+    <div class="form-field">
+      <label for="userId">Enter UserID:</label>
+      <input 
+        type="number" 
+        id="userId" 
+        [(ngModel)]="userId" 
+        name="userId" 
+        placeholder="Enter UserID" 
+        required />
+    </div>
+    <button type="submit" class="track-button">Track</button>
+  </form>
 
-        <button type="submit">Track</button>
-      </form>
+  <div *ngIf="progressData" class="progress-results">
+    <h2>Progress Data:</h2>
+    <div class="progress-cards">
+      <!-- If progressData is an array of records -->
+      <div *ngFor="let record of progressData" class="progress-card">
+        <h3>User ID: {{ record.userID }}</h3>
+        <p><strong>Progress ID:</strong> {{ record.progressID }}</p>
+        <p><strong>Course ID:</strong> {{ record.courseID }}</p>
+        <p><strong>Completed Lessons:</strong> {{ record.completedLessons }}</p>
+        <p><strong>Quiz Scores:</strong> {{ record.quizScores }}</p>
+      </div>
+      <!-- If progressData is a single object (uncomment below and comment out the ngFor block)
+      <div class="progress-card">
+        <h3>User ID: {{ progressData.userID }}</h3>
+        <p><strong>Progress ID:</strong> {{ progressData.progressID }}</p>
+        <p><strong>Course ID:</strong> {{ progressData.courseID }}</p>
+        <p><strong>Completed Lessons:</strong> {{ progressData.completedLessons }}</p>
+        <p><strong>Quiz Scores:</strong> {{ progressData.quizScores }}</p>
+      </div>
+      -->
     </div>
   </div>
+</div>
