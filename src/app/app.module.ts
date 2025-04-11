@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { CourseManagementComponent } from 'src/app/course-management/course-management.component';
 import { CourseManagementService } from './services/course-management.service';
 import { AddCourseComponent } from './add-course/add-course.component';
-import { UpdateCourseComponent } from './update-course/update-course.component';
+
 
 // Define routes
 const routes: Routes = [
@@ -18,11 +18,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/course-management', pathMatch: 'full' }
 ];
 import { AuthModule } from './auth/auth.module';
-import { FormsModule } from '@angular/forms';
-import { CourseManagementComponent } from './course-management/course-management.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { HeaderComponent } from './common/header/header.component';
-import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorInterceptor } from './interceptors/interceptor.interceptor';
 import { ViewProfileComponent } from './user/viewprofile/viewprofile.component';
@@ -35,7 +32,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     CourseManagementComponent,
     AddCourseComponent,
-    UpdateCourseComponent
     CourseManagementComponent,
     FooterComponent,
     HeaderComponent,
@@ -46,7 +42,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes) // Add RouterModule here
+    RouterModule.forRoot(routes),
     AuthModule,
     FormsModule,
     AppRoutingModule,
@@ -55,8 +51,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     
     
   ],
-  providers: [CourseManagementService],
-  providers: [{
+
+  providers: [
+    CourseManagementService,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorInterceptor,
     multi: true // Allows multiple interceptors

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { from, Observable, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { jwtDecode } from 'jwt-decode';
 
@@ -32,25 +32,21 @@ export class AuthService {
       catchError(this.handleError)
     );
   }
-  
 
   getUserProfile(userId: string): Observable<any> {
-        return this.http.get<any>(`${this.apiUrl2}/auth/${userId}`);
-      }
+    return this.http.get<any>(`${this.apiUrl2}/auth/${userId}`);
+  }
 
-  
+  updateProfile(profileData: any): Observable<any> {
+    return this.http.put(this.apiUrl2, profileData, { responseType: 'text' }).pipe(
+      catchError(this.handleError)
+    );
+  }
 
-    updateProfile(profileData: any): Observable<any> {
-          return this.http.put(this.apiUrl2, profileData, { responseType: 'text' }).pipe(
-            catchError(this.handleError)
-          );
-        }
-      
-
-
-  
-    
-  
+  isLoggedIn(): boolean {
+    const token = localStorage.getItem('jwtToken');
+    return !!token; // Returns true if token exists, false otherwise
+  }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     if (error.error instanceof ErrorEvent) {

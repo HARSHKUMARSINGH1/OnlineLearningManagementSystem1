@@ -1,22 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CourseManagementService } from 'src/app/services/course-management.service';
+import { AuthService } from 'src/app/services/auth.service'; // Import AuthService
 import { ICourse } from 'src/app/models/course-model';
-
+import { jwtDecode } from 'jwt-decode'; // Correct import
 @Component({
   selector: 'app-course-management',
   templateUrl: './course-management.component.html',
   styleUrls: ['./course-management.component.css']
 })
 export class CourseManagementComponent implements OnInit {
-  userType: string = 'Instructor'; // Change to 'Student' for student dashboard
+  userType: string = ''; // Initialize as empty
   courses: ICourse[] = [];
   selectedCourse: ICourse | null = null;
   errorMessage: string = '';
 
-  constructor(private courseService: CourseManagementService, private router: Router) {}
+  constructor(
+    private courseService: CourseManagementService,
+    private authService: AuthService, // Inject AuthService
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.getUserProfile(); // Fetch user profile on initialization
     this.courseService.getAllCourses().subscribe(
       (data: ICourse[]) => {
         this.courses = data;
@@ -24,6 +30,34 @@ export class CourseManagementComponent implements OnInit {
       (error) => {
         this.errorMessage = 'Failed to load courses. Please try again later.';
       }
+    );
+  }
+
+  fetchAuthId(): string {
+    const token = localStorage.getItem('jwtToken');
+    let authId = '';
+    if (token) {
+      try {
+        const decodedToken: any = jwtDecode(token);
+        authId = decodedToken.sub; // Adjust this based on your token structure
+      } catch (error) {
+        console.error('Error decoding token:', error);
+      }
+    }
+    return authId;
+  }
+
+  getUserProfile(): void {
+    const authId = this.fetchAuthId();
+    this.authService.getUserProfile(authId).subscribe(
+      (data: any) => {
+        this.userType = data.role; // Set userType based on profile data
+        console.log('userType:', this.userType);
+      },
+      (error: any) => {
+        console.error('Error fetching user profile:', error);
+      }
+       // Debugging log
     );
   }
 
@@ -47,18 +81,7 @@ export class CourseManagementComponent implements OnInit {
   }
 
   
-
   
-updateCourse(): void {
-    if (this.selectedCourse) {
-      this.router.navigate(['/update-course', this.selectedCourse.courseID]);
-    }
-  }
-  
-    
-  
-
-  // Placeholder method for deleteCourse
   deleteCourse(): void {
     // Logic to be implemented later
   }
