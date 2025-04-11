@@ -1,22 +1,34 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router'; // Import RouterModule
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CourseManagementComponent } from './course-management/course-management.component';
-import { EnrollmentAndAccessComponent } from './enrollment-and-access/enrollment-and-access.component';
+import { CourseManagementComponent } from 'src/app/course-management/course-management.component';
+import { CourseManagementService } from './services/course-management.service';
+import { AddCourseComponent } from './add-course/add-course.component';
+
+// Define routes
+const routes: Routes = [
+  { path: 'course-management', component: CourseManagementComponent },
+  { path: 'add-course', component: AddCourseComponent },
+  { path: '', redirectTo: '/course-management', pathMatch: 'full' }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     CourseManagementComponent,
-    EnrollmentAndAccessComponent
+    AddCourseComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot(routes) // Add RouterModule here
   ],
-  providers: [],
+  providers: [CourseManagementService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,2 +1,40 @@
-<p>course-management works!</p>
-<h2>hello</h2>
+<div class="dashboard">
+    <div *ngIf="userType === 'Student'" class="student-dashboard">
+      <h2>STUDENTS DASHBOARD</h2>
+      <div class="courses-section">
+        <h3>COURSES</h3>
+        <select [(ngModel)]="selectedCourse" (change)="onCourseSelected($event)">
+          <option *ngFor="let course of courses" [value]="course.courseID">{{ course.title }}</option>
+        </select>
+      </div>
+      <div *ngIf="selectedCourse">
+        <p>Title: {{ selectedCourse.title }}</p>
+        <p>Description: {{ selectedCourse.description }}</p>
+        <p>Syllabus: {{ selectedCourse.syllabus }}</p>
+        <p>Instructor ID: {{ selectedCourse.instructorID }}</p>
+        <p>preRequisites: {{ selectedCourse.preRequisites }}</p>
+      </div>
+      <button class="progress-btn">Progress tracking</button>
+      <button class="quiz-btn">QUIZ</button>
+      <button class="report-btn">REPORT</button>
+    </div>
+  
+    <div *ngIf="userType === 'Instructor'" class="instructor-dashboard">
+      <h2>INSTRUCTOR DASHBOARD</h2>
+      <div class="courses-section">
+        <h3>COURSES</h3>
+        <select [(ngModel)]="selectedCourse" (change)="onCourseSelected($event)">
+          <option *ngFor="let course of courses" [value]="course.courseID">{{ course.title }}</option>
+        </select>
+      </div>
+      <div *ngIf="selectedCourse">
+        <p>Title: {{ selectedCourse.title }}</p>
+        <p>Description: {{ selectedCourse.description }}</p>
+        <p>Syllabus: {{ selectedCourse.syllabus }}</p>
+        <p>Instructor ID: {{ selectedCourse.instructorID }}</p>
+        <p>preRequisites: {{ selectedCourse.preRequisites }}</p>
+      </div>
+      <button class="create-quiz-btn">+ Create Quiz</button>
+      <button class="create-course-btn" (click)="navigateToAddCourse()">+ Create course</button>
+    </div>
+  </div>

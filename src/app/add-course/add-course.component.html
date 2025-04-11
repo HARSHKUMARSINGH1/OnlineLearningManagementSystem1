@@ -1,0 +1,26 @@
+<div class="add-course-container">
+    <h2>Add New Course</h2>
+    <form (ngSubmit)="onSubmit()" #courseForm="ngForm">
+      <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" required [(ngModel)]="addCourse.title" name="title">
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <textarea id="description" required [(ngModel)]="addCourse.description" name="description"></textarea>
+      </div>
+      <div>
+        <label for="syllabus">Syllabus:</label>
+        <textarea id="syllabus" required [(ngModel)]="addCourse.syllabus" name="syllabus"></textarea>
+      </div>
+      <div>
+        <label for="instructorID">Instructor ID:</label>
+        <input type="number" id="instructorID" required [(ngModel)]="addCourse.instructorID" name="instructorID">
+      </div>
+      <div>
+        <label for="preRequisites">Prerequisites:</label>
+        <input type="text" id="preRequisites" required [(ngModel)]="addCourse.preRequisites" name="preRequisites">
+      </div>
+      <button type="submit">Add Course</button>
+    </form>
+  </div>
