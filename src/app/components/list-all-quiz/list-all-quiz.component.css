@@ -1,175 +1,125 @@
-/* General Container Styling */
-.container {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Feedback Message Styling */
-  .feedback-message {
-    font-size: 16px;
-    color: #dc3545; /* Error Message Color */
-    margin-bottom: 20px;
-    font-weight: bold;
-  }
-  
-  /* Form Section Styling */
-  .quiz-form h3 {
-    margin-bottom: 15px;
-    color: #333;
-    font-size: 22px;
-  }
-  
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+/* Quiz Form Styling */
+.quiz-form {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 40px auto; /* Proper spacing */
+  width: 70%; /* Slightly reduced width */
+  max-width: 600px;
+}
+
+/* Form row styling */
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.form-row input, 
+.form-row textarea {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+
+/* Quiz List Styling */
+.quiz-list {
+  background: #ffffff;
+  padding: 35px; /* Increased padding for a more prominent look */
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 80px auto; /* More separation */
+  width: 95%; /* Increasing size without making it full-width */
+  max-width: 950px; /* Giving it more presence */
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+th {
+  background: #007bff;
+  color: white;
+}
+
+/* Button Styling */
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Submit Button (Blue) */
+.btn-submit {
+  background: #3a06f7; /* Blue color */
+  color: #f6f9fc;
+}
+
+.btn-submit:hover {
+  background: #0056b3;
+}
+
+
+/* Clear Button (Dark Grey) */
+.btn-clear {
+  background: #343a40;
+  color: white;
+}
+
+.btn-clear:hover {
+  background: #23272b;
+}
+
+/* Back Button Styling */
+.back-btn {
+  background: #4a4d4a;
+  color: white;
+}
+
+.back-btn:hover {
+  background: #5a6268;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Centering the buttons */
+  gap: 20px; /* Space between buttons */
+  margin-top: 10px; /* Reducing the space to move them up */
+  margin-bottom: 50px; /* Ensuring more space before the footer */
+}
+
+
+/* Aligning Edit and Delete Buttons Side by Side */
+.actions {
+  display: flex;
+  gap: 10px; /* Ensuring buttons remain spaced properly */
+}
+
+@media (max-width: 768px) {
   .form-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 15px;
+    flex-direction: column;
   }
-  
-  .quiz-form input,
-  .quiz-form textarea {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .quiz-form input:focus,
-  .quiz-form textarea:focus {
-    outline: none;
-    border-color: #007bff; /* Focus Border Color */
-  }
-  
-  .quiz-form button {
-    padding: 10px 15px;
-    background-color: #28a745;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .quiz-form button:hover {
-    background-color: #218838;
-  }
-  
-  /* Table Styling */
-  .quiz-list h3 {
-    margin-bottom: 15px;
-    color: #333;
-    font-size: 22px;
-  }
-  
+
   table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+    display: block;
+    overflow-x: auto;
   }
-  
-  thead {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  thead th {
-    padding: 12px;
-    text-align: left;
-    font-weight: bold;
-  }
-  
-  tbody tr {
-    border-bottom: 1px solid #ddd;
-  }
-  
-  tbody tr:last-child {
-    border-bottom: none;
-  }
-  
-  tbody td {
-    padding: 10px;
-    font-size: 16px;
-  }
-  
-  tbody tr:nth-child(even) {
-    background-color: #f4f4f4;
-  }
-  
-  tbody tr:hover {
-    background-color: #e8f0ff;
-  }
-  
-  input,
-  textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-  }
-  
-  input:focus,
-  textarea:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  /* Action Buttons Styling */
-  .action-buttons button {
-    margin-right: 8px;
-    padding: 8px 12px;
-    font-size: 14px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .action-buttons button:first-child {
-    background-color: #ffc107; /* Edit Button Color */
-    color: white;
-  }
-  
-  .action-buttons button:first-child:hover {
-    background-color: #e0a800;
-  }
-  
-  .action-buttons button:last-child {
-    background-color: #dc3545; /* Delete Button Color */
-    color: white;
-  }
-  
-  .action-buttons button:last-child:hover {
-    background-color: #bd2130;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .form-row {
-      flex-direction: column;
-    }
-  
-    .quiz-form input,
-    .quiz-form textarea {
-      width: 100%;
-    }
-  
-    table {
-      font-size: 14px;
-    }
-  
-    .action-buttons button {
-      font-size: 12px;
-      padding: 6px 10px;
-    }
-  }
-  
+}

@@ -72,21 +72,44 @@ input[type="number"] {
     text-align: center;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center; /* Centering the button */
+  margin-top: 20px; /* Adjusted space above */
+  margin-bottom: 50px; /* Adds space below */
+}
+
+/* Save Button Styling */
 /* Save Button Styling */
 button {
     padding: 8px 12px;
     font-size: 14px;
     border: none;
     border-radius: 4px;
-    background-color: #28a745; /* Green button for Save */
+    background-color: #007bff; /* Blue color for Save button */
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #218838; /* Darker green on hover */
+    background-color: #0056b3; /* Darker blue on hover */
 }
+
+/* Back Button Styling */
+.back-btn {
+    background-color: #424b44; /* Green color for Back button */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    background-color: #424b44; /* Maintain green color on hover */
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -102,4 +125,18 @@ button:hover {
         font-size: 12px;
         padding: 6px 10px;
     }
+    .back-btn {
+        background-color: #0cb525;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      .back-btn:hover {
+        background-color: #0cb525;
+      }
+      
+      
 }

@@ -10,7 +10,8 @@
     <input type="number" [(ngModel)]="newQuiz.courseID" placeholder="Course ID" />
   </div>
   <div class="form-row">
-    <button (click)="addQuiz()">Submit</button>
+    <button (click)="addQuiz()" class="btn-submit">Submit</button>
+    <button (click)="resetNewQuiz()" class="btn-clear">Clear</button>
   </div>
 </div>
 
@@ -75,7 +76,11 @@
   </table>
 </div>
 
+
 <!-- Common Button for Answers -->
-<div class="common-actions">
-  <button (click)="redirectToQuizAttempt()" class="btn btn-primary">Answers</button>
+<div class="button-container">
+  <button (click)="redirectToQuizAttempt()" class="btn-primary">Answers</button>
+  <button (click)="goBack()" class="back-btn">Back</button>
 </div>
+
+

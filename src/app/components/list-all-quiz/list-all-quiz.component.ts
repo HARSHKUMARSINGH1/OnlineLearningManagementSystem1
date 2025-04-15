@@ -112,7 +112,7 @@ export class ListAllQuizComponent implements OnInit {
   }
 
   // Reset the new quiz form
-  private resetNewQuiz(): void {
+  resetNewQuiz(): void {
     this.newQuiz = {
       quizID: 0,
       title: '',
@@ -121,5 +121,9 @@ export class ListAllQuizComponent implements OnInit {
       courseID: 0,
       course: undefined
     };
+  }
+
+  goBack(): void {
+    this.router.navigate(['/course-management']); // Navigate back to course management
   }
 }

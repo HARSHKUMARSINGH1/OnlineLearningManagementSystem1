@@ -24,7 +24,6 @@ const routes: Routes = [
   { path: 'list-all-quiz', component: ListAllQuizComponent },
   { path: 'quiz-attempt', component: QuizAttemptComponent },
   { path: 'student-quiz-attempt/:id', component: StudentQuizAttemptComponent },
-  { path: '', redirectTo: '/student-answer', pathMatch: 'full' },
   { path: 'student-answer', component: StudentAnswerComponent },
 
   

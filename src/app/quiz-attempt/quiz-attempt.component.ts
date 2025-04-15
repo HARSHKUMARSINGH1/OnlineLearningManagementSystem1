@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AnswerService } from '../services/answer.service';
 import { Answer } from '../models/answer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-attempt',
@@ -8,11 +9,12 @@ import { Answer } from '../models/answer';
   styleUrls: ['./quiz-attempt.component.css']
 })
 export class QuizAttemptComponent implements OnInit {
+  
   answers: Answer[] = [];
   errorMessage: string = '';
 
-  constructor(private answerService: AnswerService) {}
-
+  constructor(private answerService: AnswerService,private router: Router) {}
+  
   ngOnInit(): void {
     this.loadAnswers();
   }
@@ -42,4 +44,8 @@ export class QuizAttemptComponent implements OnInit {
       }
     );
   } 
+
+  goBack(): void {
+    this.router.navigate(['/list-all-quiz']); // Redirect to the previous component
+  }
 }
