@@ -20,9 +20,6 @@ export class EnrollmentAndAccessComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.courseID = params['courseID'];
     });
-
-    // Initial fetch can be removed if you don't want to fetch on load
-    // this.getEnrollmentsByUserId(this.userId);
   }
 
   getEnrollmentsByUserId(userId: number): void {
@@ -42,21 +39,7 @@ export class EnrollmentAndAccessComponent implements OnInit {
     this.getEnrollmentsByUserId(this.userId);
   }
 
-  enrollInCourse(courseId: string | undefined): void {
-    if (courseId) {
-      this.enrollmentService.enroll(this.userId.toString(), courseId).subscribe(
-        response => {
-          alert('Successfully enrolled in course');
-        },
-        error => {
-          console.error('Error enrolling in course:', error);
-          alert('Failed to enroll in course');
-        }
-      );
-    } else {
-      alert('Course ID is undefined');
-    }
-  }
+ 
 }
 
 // New component for the enroll button
@@ -65,29 +48,21 @@ export class EnrollmentAndAccessComponent implements OnInit {
   template: `<button (click)="enroll()">Enroll</button>`
 })
 export class EnrollButtonComponent {
-  @Input() courseId!: string; // Use the `!` operator to indicate that this property will be initialized later
-  userId: string = 'logged-in-user-id'; // Replace with actual logged-in user ID
+  @Input() courseId!: string; 
+  userId: string = 'logged-in-user-id'; 
 
   constructor(private enrollmentService: EnrollmentAndAccessService) {}
+  
 
   enroll() {
     this.enrollmentService.enroll(this.userId, this.courseId).subscribe(
-      response => {
+      (response: any) => {
         alert('Successfully enrolled in course');
       },
-      error => {
+      (error: any) => {
         console.error('Error enrolling in course:', error);
         alert('Failed to enroll in course');
       }
     );
   }
 }
-
-
-
-
-
-
-
-
-

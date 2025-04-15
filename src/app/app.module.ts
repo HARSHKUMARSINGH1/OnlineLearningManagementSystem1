@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router'; // Import RouterModule
 import { UpdateCourseComponent } from './update-course/update-course.component';
 import { AppRoutingModule } from './app-routing.module';
-import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
@@ -22,7 +21,7 @@ const routes: Routes = [
   { path: 'course-management', component: CourseManagementComponent },
   { path: 'add-course', component: AddCourseComponent },
   { path: 'update-course/:id', component: UpdateCourseComponent }, // Add this route
-  { path: '', redirectTo: '/course-management', pathMatch: 'full' }
+  { path: '', redirectTo: '/course-management', pathMatch: 'full' },
   { path: 'enrollments', component: EnrollmentAndAccessComponent },
   { path: '', redirectTo: '/course-management', pathMatch: 'full' },
   
@@ -48,7 +47,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     ViewProfileComponent,
     UpdateProfileComponent,
-    UpdateCourseComponent
+    UpdateCourseComponent,
     AddCourseComponent,
     EnrollmentAndAccessComponent,
     
@@ -63,21 +62,20 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes),
+    CommonModule
     
     
   ],
 
   providers: [
-    CourseManagementService,{
+    CourseManagementService,EnrollmentAndAccessService,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorInterceptor,
     multi: true // Allows multiple interceptors
   }],
-    RouterModule.forRoot(routes),
-    CommonModule
-  ],
-  providers: [CourseManagementService, EnrollmentAndAccessService],
+    
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'profile', component: ViewProfileComponent },
   { path: 'update-profile', component: UpdateProfileComponent },
   { path: 'update-course/:id', component: UpdateCourseComponent },
-  { path: '', redirectTo: '/course-management', pathMatch: 'full' }
+  { path: '', redirectTo: '/course-management', pathMatch: 'full' },
   { path: '', redirectTo: '/course-management', pathMatch: 'full' },
   { path: 'enrollment-and-access', component: EnrollmentAndAccessComponent },
   { path: 'enroll/:courseId', component: EnrollButtonComponent }
@@ -38,4 +38,3 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export class AppRoutingModule {}
