@@ -7,15 +7,14 @@ import { TrackStudentService } from '../services/track-student.service';
   styleUrls: ['./track-student-progress.component.css']
 })
 export class TrackStudentProgressComponent implements OnInit {
-  //Variable to hold the entered user id
-  userId! : number;
-  //Variable to store fetched progress data
+  // Variable to hold the entered user id
+  userId!: number;
+  // Variable to store fetched progress data
   progressData: any;
 
   constructor(private trackStudentService: TrackStudentService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   // Method called when the form is submitted
   trackProgress(): void {
@@ -24,14 +23,14 @@ export class TrackStudentProgressComponent implements OnInit {
       return;
     }
 
-  // Call the service method and subscribe to the observable
-    this.trackStudentService.getAllProgress().subscribe(
+    // Call the service method and subscribe to the observable
+    this.trackStudentService.getProgressByUserId(this.userId).subscribe(
       (data: any) => {
-        console.log('Fetched progress data:', data);
+        console.log(`Fetched progress data for UserID ${this.userId}:`, data);
         this.progressData = data;
       },
       (error: any) => {
-        console.error('Error fetching progress data', error);
+        console.error(`Error fetching progress data for UserID ${this.userId}:`, error);
       }
     );
   }

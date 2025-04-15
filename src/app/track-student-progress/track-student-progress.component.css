@@ -119,6 +119,28 @@ html, body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
+/* GO BACK Button styling */
+.go-back-container {
+  text-align: center; /* Centers the button horizontally */
+  margin-top: 2rem; /* Adds space above the button */
+}
+
+.go-back-container .btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff; /* Blue button */
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.go-back-container .btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-2px);
+}
+
 /* Responsive adjustments */
 @media (max-width: 600px) {
   .track-student-progress-container {
@@ -126,5 +148,10 @@ html, body {
   }
   .progress-cards {
     grid-template-columns: 1fr;
+  }
+
+  /* Centering GO BACK button for mobile devices */
+  .go-back-container {
+    margin-top: 20px;
   }
 }

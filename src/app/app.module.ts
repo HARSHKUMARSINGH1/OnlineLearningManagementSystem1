@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'course-management', component: CourseManagementComponent },
   { path: 'add-course', component: AddCourseComponent },
   { path: 'update-course/:id', component: UpdateCourseComponent }, // Add this route
-  { path: '', redirectTo: '/course-management', pathMatch: 'full' }
+  { path: '', redirectTo: '/course-management', pathMatch: 'full' },
   { path: '', redirectTo: '/course-management', pathMatch: 'full' },
   { path: 'track-student-progress', component: TrackStudentProgressComponent},
   { path: 'report', component: ReportComponent}
@@ -46,7 +46,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     ViewProfileComponent,
     UpdateProfileComponent,
-    UpdateCourseComponent
+    UpdateCourseComponent,
     AddCourseComponent,
     TrackStudentProgressComponent,
     ReportComponent
@@ -60,20 +60,19 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes) 
     
     
   ],
 
   providers: [
-    CourseManagementService,{
+    CourseManagementService,TrackStudentService, ReportService,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorInterceptor,
     multi: true // Allows multiple interceptors
   }],
-    RouterModule.forRoot(routes) // Add RouterModule here
-  ],
-  providers: [CourseManagementService, TrackStudentService, ReportService],
+    // Add RouterModule her
   bootstrap: [AppComponent]
 })
 export class AppModule { }
