@@ -1,0 +1,18 @@
+<header>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col">
+          <h1 class="text-white">Learning Management System</h1>
+        </div>
+        <div class="col text-right">
+          <nav>
+            <a *ngIf="isLoginPage" class="btn btn-link text-white" routerLink="/register">Register</a>
+            <a *ngIf="isRegisterPage" class="btn btn-link text-white" routerLink="/login">Login</a>
+            <a *ngIf="isLoggedIn" class="btn btn-link text-white" routerLink="/profile">View Profile</a>
+            <a *ngIf="isLoggedIn" class="btn btn-link text-white" (click)="logout()">Logout</a>
+          </nav>    
+        </div>
+      </div>
+    </div>
+  </header>
+  
