@@ -1,0 +1,40 @@
+footer {
+    background-color: #969697; /* Change this to your desired background color */
+    padding: 20px;
+    text-align: center;
+    position: relative; /* Ensure the footer-top link is positioned correctly */
+  }
+  
+  .footer-about {
+    margin-bottom: 20px;
+  }
+  
+  .footer-menus a {
+    display: block; /* Ensure each menu item is on a new line */
+    margin: 10px 0;
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .footer-top {
+    margin-bottom: 20px; /* Add some space below the "Go to Top" link */
+  }
+  
+  .footer-top a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .footer-social {
+    margin-top: 20px;
+  }
+  
+  .footer-social a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .footer-social a:hover {
+    color: #0056b3;
+  }
