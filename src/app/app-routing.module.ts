@@ -14,17 +14,20 @@ import { ViewProfileComponent } from './user/viewprofile/viewprofile.component';
 import { UpdateProfileComponent } from './user/updateprofile/updateprofile.component';
 import { AuthGuard } from './authguard';
 import { UpdateCourseComponent } from 'src/app/update-course/update-course.component'
+import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz-attempt.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/course-management', pathMatch: 'full' }, // Default route redirect
-  { path: 'course-management', component: CourseManagementComponent },
+ // Default route redirect
+
   { path: 'course-management', component: CourseManagementComponent,canActivate: [AuthGuard] }, // Add your AuthGuard here
   { path: 'add-course', component: AddCourseComponent },
-  { path: 'list-all-quizzes', component: ListAllQuizComponent }, // Route for List All Quiz Component
-  { path: 'quiz-attempt', component: QuizAttemptComponent }, // Route for QuizAttemptComponent
-  { path: 'student-answer', component: StudentAnswerComponent }, // Route for StudentAnswerComponent
+  { path: 'list-all-quiz', component: ListAllQuizComponent },
+  { path: 'quiz-attempt', component: QuizAttemptComponent },
+  { path: 'student-quiz-attempt/:id', component: StudentQuizAttemptComponent },
+  { path: '', redirectTo: '/student-answer', pathMatch: 'full' },
+  { path: 'student-answer', component: StudentAnswerComponent },
 
-  { path: '', redirectTo: '/course-management', pathMatch: 'full' },
+  
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

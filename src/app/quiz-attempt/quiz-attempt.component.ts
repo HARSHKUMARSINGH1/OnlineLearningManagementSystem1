@@ -17,6 +17,7 @@ export class QuizAttemptComponent implements OnInit {
     this.loadAnswers();
   }
 
+  // Method to load answers
   loadAnswers(): void {
     this.answerService.getAllAnswers().subscribe(
       (data) => {
@@ -29,15 +30,16 @@ export class QuizAttemptComponent implements OnInit {
     );
   }
 
-  deleteAnswer(id: number): void {
-    this.answerService.deleteAnswer(id).subscribe(
+  // Method to update marks for an answer
+  updateMarks(answer: Answer): void {
+    this.answerService.updateAnswer(answer.answerID, answer).subscribe(
       () => {
-        this.answers = this.answers.filter((answer) => answer.answerID !== id);
+        alert('Marks updated successfully');
       },
       (error) => {
-        this.errorMessage = 'Failed to delete answer.';
-        console.error(error);
+        this.errorMessage = 'Failed to update marks.';
+        console.error('Error:', error);
       }
     );
-  }
+  } 
 }

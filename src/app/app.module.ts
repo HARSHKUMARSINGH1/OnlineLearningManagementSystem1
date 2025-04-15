@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule, Routes } from '@angular/router'; // Import RouterModule
 import { UpdateCourseComponent } from './update-course/update-course.component';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CourseManagementComponent } from 'src/app/course-management/course-management.component';
 import { CourseManagementService } from './services/course-management.service';
@@ -32,6 +31,7 @@ import { AuthInterceptorInterceptor } from './interceptors/interceptor.intercept
 import { ViewProfileComponent } from './user/viewprofile/viewprofile.component';
 import { UpdateProfileComponent } from './user/updateprofile/updateprofile.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz-attempt.component';
 
 
 @NgModule({
@@ -41,35 +41,35 @@ import { ReactiveFormsModule } from '@angular/forms';
     AddCourseComponent,
     ListAllQuizComponent,
     QuizAttemptComponent,
-    StudentAnswerComponent
+    StudentAnswerComponent,
     AddCourseComponent,
     CourseManagementComponent,
     FooterComponent,
     HeaderComponent,
     ViewProfileComponent,
     UpdateProfileComponent,
-    UpdateCourseComponent
+    UpdateCourseComponent,
+    StudentQuizAttemptComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     MatTableModule,
-    AppRoutingModule // Use AppRoutingModule to handle routes
-  ],
-  providers: [CourseManagementService, QuizService],
+    AppRoutingModule,
     RouterModule.forRoot(routes),
     AuthModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule
-    
-    
   ],
 
+    
+    
+  
   providers: [
-    CourseManagementService,{
+    CourseManagementService,QuizService,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorInterceptor,
     multi: true // Allows multiple interceptors

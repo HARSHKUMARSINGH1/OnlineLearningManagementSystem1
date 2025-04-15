@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AnswerService } from 'src/app/services/answer.service'; // Import the AnswerService
-import { ListAllQuiz } from 'src/app/models/list-all-quiz';
+import { Router } from '@angular/router'; // For navigation
+import { AnswerService } from 'src/app/services/answer.service';
 import { Answer } from 'src/app/models/answer';
+
 
 @Component({
   selector: 'app-student-answer',
@@ -9,17 +10,18 @@ import { Answer } from 'src/app/models/answer';
   styleUrls: ['./student-answer.component.css']
 })
 export class StudentAnswerComponent implements OnInit {
-  quizzes: any[] = []; // Use 'any[]' since we're splitting questionList into an array
-  answers: Answer[] = [];
-  errorMessage: string = '';
+  quizzes: any[] = []; // List of quizzes
+  errorMessage: string = ''; // Error message
+  attemptingQuizId: number | null = null; // ID of the quiz being attempted
+  studentAnswer: string = ''; // Student's answer for the quiz
 
-  constructor(private answerService: AnswerService) {}
+  constructor(private answerService: AnswerService, private router: Router) {}
 
   ngOnInit(): void {
-    this.loadQuizzes(); // Load quizzes on initialization
+    this.loadQuizzes();
   }
 
-  // Fetch quizzes from the backend using AnswerService
+  // Fetch quizzes from the backend
   loadQuizzes(): void {
     this.answerService.getAllQuizzes().subscribe(
       (data) => {
@@ -27,58 +29,48 @@ export class StudentAnswerComponent implements OnInit {
           quizID: quiz.quizID,
           title: quiz.title,
           totalMarks: quiz.totalMarks,
-          questions: quiz.questionList.split(',') // Split the questionList string into an array
-        }));
-
-        // Initialize answers array with quiz IDs
-        this.answers = this.quizzes.map((quiz) => ({
-          answerID: 0,         // Default ID for new answers
-          response: '',        // Empty response
-          marks: 0,            // Initialize marks to 0
-          quizID: quiz.quizID, // Associate with quiz ID
-          userID: 1            // Replace with the logged-in user's ID dynamically
+          questions: quiz.questionList.split(',') // Split into an array
         }));
       },
       (error) => {
         this.errorMessage = 'Failed to load quizzes.';
-        console.error(error);
+        console.error('Error fetching quizzes:', error);
       }
     );
   }
 
-  // Submit answers to the backend using AnswerService
-  submitAnswers(): void {
-    // Validate answers before sending
-    const hasEmptyResponses = this.answers.some(answer => !answer.response.trim());
-    if (hasEmptyResponses) {
-      alert('Please provide a response for all quizzes.');
+  // Show the attempt form for the selected quiz
+  showAttemptForm(quizID: number): void {
+    this.attemptingQuizId = quizID;
+    this.studentAnswer = ''; // Clear any previous answer
+  }
+
+  submitAnswer(quizID: number): void {
+    if (!this.studentAnswer.trim()) {
+      alert('Answer cannot be empty!');
       return;
     }
-
-    this.answerService.submitAnswers(this.answers).subscribe(
-      () => alert('Answers submitted successfully!'),
+  
+    // Prepare the payload
+    const answerPayload: Answer = {
+      answerID: 0, // Assuming the backend generates this automatically
+      response: this.studentAnswer, // The student's answer
+      marks: 0, // Placeholder value (can be calculated later)
+      quizID: quizID, // The ID of the quiz being attempted
+      userID: 1// Replace with the actual logged-in user's ID
+    };
+  
+    console.log('Submitting payload:', answerPayload); // Log for debugging
+  
+    this.answerService.submitAnswers(answerPayload).subscribe(
+      () => {
+        alert('Answer submitted successfully!');
+        this.attemptingQuizId = null; // Reset the form state
+      },
       (error) => {
-        console.error('Error details:', error.error);
-        this.errorMessage = 'Failed to submit answers.';
+        console.error('Error submitting answer:', error);
+        alert('Failed to submit the answer. Please check the console for details.');
       }
     );
-  }
-
-  // Clear all answers
-  clearAnswers(): void {
-    this.answers.forEach((answer) => (answer.response = ''));
-  }
-
-  // Helpers for getting and setting answers
-  getResponse(quizID: number): string {
-    const answer = this.answers.find((a) => a.quizID === quizID);
-    return answer ? answer.response : '';
-  }
-
-  setResponse(quizID: number, value: string): void {
-    const answer = this.answers.find((a) => a.quizID === quizID);
-    if (answer) {
-      answer.response = value;
-    }
-  }
+  }  
 }
