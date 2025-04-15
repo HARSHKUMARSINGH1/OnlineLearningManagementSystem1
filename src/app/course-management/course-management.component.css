@@ -4,6 +4,7 @@
   gap: 20px; /* Space between cards */
   justify-content: center; /* Center the cards */
   padding: 20px; /* Padding around the container */
+  animation: fadeIn 0.5s; /* Fade-in animation for the container */
 }
 
 .course-card {
@@ -12,8 +13,12 @@
   background-color: #ffffff; /* White background */
   padding: 20px; /* Padding inside the card */
   width: 300px; /* Fixed width for each card */
+  height: 400px; /* Increased height for each card */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
+  display: flex; /* Use Flexbox */
+  flex-direction: column; /* Column layout */
+  position: relative; /* Relative positioning for absolute child elements */
 }
 
 .course-card:hover {
@@ -21,18 +26,39 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
 }
 
+.course-details {
+  display: flex; /* Use Flexbox */
+  flex-direction: column; /* Column layout */
+  gap: 10px; /* Space between elements */
+  text-align: left; /* Left-align text */
+  flex-grow: 1; /* Allow details to grow */
+}
+
 .course-card h3 {
   margin-top: 0; /* Remove top margin */
+  margin-bottom: 10px; /* Reduced bottom margin */
   color: #007bff; /* Blue text for the title */
+  text-align: left; /* Left-align text */
 }
 
 .course-card p {
   color: #333; /* Dark grey text for the description */
-  margin: 5px 0; /* Margin for spacing between paragraphs */
+  margin: 5px 0; /* Reduced margin for spacing between paragraphs */
+  text-align: left; /* Left-align text */
+}
+
+.course-card .buttons {
+  position: absolute; /* Absolute positioning */
+  bottom: 20px; /* Position at the bottom */
+  left: 20px; /* Position from the left */
+  right: 20px; /* Position from the right */
+  display: flex; /* Use Flexbox */
+  justify-content: space-between; /* Space between buttons */
+  gap: 10px; /* Reduced gap between buttons */
 }
 
 .enroll-btn, .update-btn {
-  background-color: #007bff; /* Blue button */
+  background-color: #2d7aec; /* Blue button */
   border: none; /* Remove border */
   color: white; /* White text */
   padding: 10px 20px; /* Padding for the button */
@@ -43,6 +69,7 @@
 .enroll-btn:hover, .update-btn:hover {
   background-color: #0056b3; /* Darker blue on hover */
 }
+
 .delete-btn {
   background-color: red;
   color: white;
@@ -50,9 +77,97 @@
   padding: 10px;
   cursor: pointer;
   margin-left: 10px;
+  border-radius: 5px;
 }
 
 .delete-btn:hover {
   background-color: darkred;
 }
 
+.header {
+  text-align: center; /* Center-align the header */
+  padding: 20px; /* Padding around the header */
+  background-color: #f8f9fa; /* Light background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  position: relative; /* Relative positioning for dropdown */
+}
+
+.header-title {
+  font-size: 2em; /* Larger font size */
+  color: #007bff; /* Blue text */
+  margin: 0; /* Remove default margin */
+  animation: fadeIn 2s; /* Fade-in animation */
+}
+
+.dropdown {
+  position: absolute; /* Absolute positioning */
+  top: 20px; /* Position from the top */
+  right: 20px; /* Position from the right */
+}
+
+.dropdown-btn {
+  background-color: #007bff; /* Blue button */
+  border: none; /* Remove border */
+  color: white; /* White text */
+  padding: 10px; /* Padding for the button */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.dropdown-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.dropdown-content {
+  display: none; /* Hide dropdown content by default */
+  position: absolute; /* Absolute positioning */
+  top: 40px; /* Position below the button */
+  right: 0; /* Align to the right */
+  background-color: #f8f9fa; /* Light background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border-radius: 5px; /* Rounded corners */
+  z-index: 1; /* Ensure dropdown is above other elements */
+  animation: fadeIn 0.3s; /* Fade-in animation */
+}
+
+.dropdown-content button {
+  background-color: #007bff; /* Blue button */
+  border: none; /* Remove border */
+  color: white; /* White text */
+  padding: 10px 20px; /* Padding for the button */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  display: block; /* Block display for full width */
+  width: 100%; /* Full width */
+  text-align: left; /* Left-align text */
+}
+
+.dropdown-content button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block; /* Show dropdown content on hover */
+}
+
+.courses-section {
+  text-align: center; /* Center-align the courses section */
+  margin-top: 20px; /* Margin at the top */
+}
+
+.courses-title {
+  font-size: 1.5em; /* Larger font size */
+  color: #007bff; /* Blue text */
+  margin-bottom: 20px; /* Margin at the bottom */
+  text-align: center; /* Center-align the title */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
