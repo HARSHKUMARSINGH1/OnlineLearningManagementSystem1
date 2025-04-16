@@ -2,13 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
 import { RouterModule, Routes } from '@angular/router'; // Import RouterModule
 import { UpdateCourseComponent } from './update-course/update-course.component';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CourseManagementComponent } from 'src/app/course-management/course-management.component';
 import { CourseManagementService } from './services/course-management.service';
 import { AddCourseComponent } from './add-course/add-course.component';
+import { ListAllQuizComponent } from './components/list-all-quiz/list-all-quiz.component';
+import { QuizService } from './services/quiz.service';
+import { QuizAttemptComponent } from './quiz-attempt/quiz-attempt.component';
+import { StudentAnswerComponent } from './components/student-answer/student-answer.component';
+import { AppRoutingModule } from './app-routing.module'; // Import AppRoutingModule
 
 
 // Define routes
@@ -29,6 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz-attempt.component';
 
 
 @NgModule({
@@ -36,17 +42,24 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
     AppComponent,
     CourseManagementComponent,
     AddCourseComponent,
+    ListAllQuizComponent,
+    QuizAttemptComponent,
+    StudentAnswerComponent,
+    AddCourseComponent,
     CourseManagementComponent,
     FooterComponent,
     HeaderComponent,
     ViewProfileComponent,
     UpdateProfileComponent,
-    UpdateCourseComponent
+    UpdateCourseComponent,
+    StudentQuizAttemptComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    MatTableModule,
+    AppRoutingModule,
     RouterModule.forRoot(routes),
     AuthModule,
     FormsModule,
@@ -56,12 +69,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
     BrowserAnimationsModule,
     MatSnackBarModule,
     ToastrModule.forRoot()
-    
-    
+    ReactiveFormsModule
   ],
 
+    
+    
+  
   providers: [
-    CourseManagementService,{
+    CourseManagementService,QuizService,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorInterceptor,
     multi: true // Allows multiple interceptors
