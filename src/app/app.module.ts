@@ -68,7 +68,7 @@ import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
     ReactiveFormsModule
   ],
 

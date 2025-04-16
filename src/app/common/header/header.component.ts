@@ -52,7 +52,7 @@ validateToken(): void {
 this.snackbar.open('User logged out successfully', 'Close', {
         duration: 3000,
         horizontalPosition: 'center',
-        verticalPosition: 'bottom'
+        verticalPosition: 'top'
       });
   
     this.router.navigate(['/login']);
