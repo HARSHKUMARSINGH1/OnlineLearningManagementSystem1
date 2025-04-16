@@ -1,7 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common';
 import { EnrollmentAndAccessService } from '../services/enrollment-and-access.service';
 import { EnrollmentDto } from '../models/enrollment.dto';
+import { ICourse } from '../models/course-model';
 
 @Component({
   selector: 'app-enrollment-and-access',
@@ -12,13 +15,19 @@ export class EnrollmentAndAccessComponent implements OnInit {
   enrollments: EnrollmentDto[] = [];
   userId: number = 0;
   errorMessage: string = '';
-  courseID: string | undefined;
 
-  constructor(private route: ActivatedRoute, private enrollmentService: EnrollmentAndAccessService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private enrollmentService: EnrollmentAndAccessService,
+    private snackBar: MatSnackBar,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.courseID = params['courseID'];
+      this.userId = +params['userId']; // Ensure userId is correctly parsed as a number
+      this.fetchEnrollments();
     });
   }
 
@@ -31,38 +40,58 @@ export class EnrollmentAndAccessComponent implements OnInit {
       (error: any) => {
         console.error('Error fetching enrollments', error);
         this.errorMessage = 'Error fetching enrollments. Please try again.';
+        this.snackBar.open('Error fetching enrollments. Please try again.', 'Close', {
+          duration: 3000,
+        });
       }
     );
   }
 
-  onSubmit(): void {
+  fetchEnrollments(): void {
     this.getEnrollmentsByUserId(this.userId);
   }
 
- 
-}
+  addEnrollment(course: ICourse): void {
+    this.enrollmentService.isUserEnrolled(course.courseID, this.userId.toString()).subscribe(
+      (isEnrolled: boolean) => {
+        if (isEnrolled) {
+          this.snackBar.open('You are already enrolled in this course!', 'Close', {
+            duration: 3000,
+          });
+        } else {
+          const enrollment: EnrollmentDto = {
+            enrollmentID: 0, // Assuming 0 for new enrollment, adjust as needed
+            courseID: course.courseID,
+            title: course.title,
+            userID: this.userId,
+            enrollmentDate: new Date()
+          };
 
-// New component for the enroll button
-@Component({
-  selector: 'app-enroll-button',
-  template: `<button (click)="enroll()">Enroll</button>`
-})
-export class EnrollButtonComponent {
-  @Input() courseId!: string; 
-  userId: string = 'logged-in-user-id'; 
-
-  constructor(private enrollmentService: EnrollmentAndAccessService) {}
-  
-
-  enroll() {
-    this.enrollmentService.enroll(this.userId, this.courseId).subscribe(
-      (response: any) => {
-        alert('Successfully enrolled in course');
+          this.enrollmentService.addEnrollment(enrollment).subscribe(
+            (response) => {
+              this.snackBar.open('Successfully enrolled in course', 'Close', {
+                duration: 3000,
+              });
+              this.fetchEnrollments(); // Refresh the enrollments list
+            },
+            (error) => {
+              console.error('Error adding enrollment:', error);
+              this.snackBar.open('Failed to enroll in course', 'Close', {
+                duration: 3000,
+              });
+            }
+          );
+        }
       },
       (error: any) => {
-        console.error('Error enrolling in course:', error);
-        alert('Failed to enroll in course');
+        console.error('Error checking enrollment status:', error);
+        this.snackBar.open('Failed to check enrollment status', 'Close', {
+          duration: 3000,
+        });
       }
     );
+  }
+  goBack(): void {
+    this.location.back();
   }
 }

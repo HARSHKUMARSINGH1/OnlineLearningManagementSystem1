@@ -1,5 +1,28 @@
 .enrollment-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
+  margin-top: 60px; /* Increased margin */
+  margin-bottom: 60px; /* Increased margin */
+  animation: fadeIn 1s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.6); /* Increased transparency */
+  background-image: url('src/assets/flat-lay-aesthetic-office-desk.jpg');
+  background-size: cover; /* Ensures the image covers the entire container */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 form {
@@ -39,6 +62,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent */
 }
 
 th, td {
@@ -47,5 +71,5 @@ th, td {
 }
 
 th {
-  background-color: #f2f2f2;
+  background-color: #2d7aec;
 }

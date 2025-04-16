@@ -14,7 +14,6 @@ import { AddCourseComponent } from './add-course/add-course.component';
 
 import { EnrollmentAndAccessComponent } from './enrollment-and-access/enrollment-and-access.component';
 import { EnrollmentAndAccessService } from './services/enrollment-and-access.service';
-import { EnrollButtonComponent } from './enrollment-and-access/enrollment-and-access.component'; // Corrected import
 
 
 const routes: Routes = [
@@ -25,7 +24,6 @@ const routes: Routes = [
   { path: 'enrollments', component: EnrollmentAndAccessComponent },
   { path: '', redirectTo: '/course-management', pathMatch: 'full' },
   
-  { path: 'enroll/:courseId', component: EnrollButtonComponent }
 ];
 import { AuthModule } from './auth/auth.module';
 import { FooterComponent } from './common/footer/footer.component';
@@ -35,6 +33,8 @@ import { AuthInterceptorInterceptor } from './interceptors/interceptor.intercept
 import { ViewProfileComponent } from './user/viewprofile/viewprofile.component';
 import { UpdateProfileComponent } from './user/updateprofile/updateprofile.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -50,9 +50,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     UpdateCourseComponent,
     AddCourseComponent,
     EnrollmentAndAccessComponent,
-    
-    EnrollButtonComponent
-  ],
+    ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -64,7 +62,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
-    CommonModule
+    CommonModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
     
     
   ],

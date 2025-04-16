@@ -1,11 +1,4 @@
-<div class="enrollment-container">
-  <h1>Student Enrollment</h1>
-  <form (ngSubmit)="onSubmit()">
-    <label for="studentId">Enter Student ID:</label>
-    <input type="number" id="studentId" [(ngModel)]="userId" name="studentId" required>
-    <button type="submit">Submit</button>
-  </form>
-  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+<div class="enrollment-container animated fadeIn">
   <div *ngIf="enrollments.length > 0">
     <h2>Enrolled Courses</h2>
     <table>
@@ -31,5 +24,8 @@
   </div>
   <div *ngIf="enrollments.length === 0 && !errorMessage">
     <p>No enrollments found.</p>
+  </div>
+  <div style="text-align: left; margin-top: 20px;">
+    <button (click)="goBack()" style="background-color: grey;">Back</button>
   </div>
 </div>

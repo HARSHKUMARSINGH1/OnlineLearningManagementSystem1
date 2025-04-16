@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CourseManagementService } from 'src/app/services/course-management.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service'; 
 import { EnrollmentAndAccessService } from 'src/app/services/enrollment-and-access.service';
 import { ICourse } from 'src/app/models/course-model';
@@ -14,7 +15,7 @@ import { EnrollmentDto } from '../models/enrollment.dto';
 })
 export class CourseManagementComponent implements OnInit {
   userType: string = ''; 
-  userId: number = 0
+  userId: number = 0;
   courses: ICourse[] = [];
   selectedCourse: ICourse | null = null;
   errorMessage: string = '';
@@ -24,6 +25,7 @@ export class CourseManagementComponent implements OnInit {
     private authService: AuthService, 
     private router: Router,
     private enrollmentService: EnrollmentAndAccessService,
+    private snackbar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -57,9 +59,9 @@ export class CourseManagementComponent implements OnInit {
     this.authService.getUserProfile(authId).subscribe(
       (data: any) => {
         this.userType = data.role; 
-        this.userId=data.userId;
+        this.userId = data.userId;
         console.log('userType:', this.userType);
-        console.log('userId',this.userId)
+        console.log('userId:', this.userId);
       },
       (error: any) => {
         console.error('Error fetching user profile:', error);
@@ -77,40 +79,59 @@ export class CourseManagementComponent implements OnInit {
     this.router.navigate(['/update-course', course.courseID]);
   }
 
-  
-  addEnrollment(course: ICourse) {
+  addEnrollment(course: ICourse): void {
     if (this.userId === 0) {
       console.error('User ID is not set.');
       return;
     }
-  
+
     if (course) {
-      const enrollment: EnrollmentDto = {
-        enrollmentID: 0, // Assuming 0 for new enrollment, adjust as needed
-        courseID: course.courseID,
-        title: course.title,
-        userID: this.userId, // Ensure this.userId is correctly set
-        enrollmentDate: new Date() // Ensure date is in ISO format
-      };
-  
-      this.enrollmentService.addEnrollment(enrollment).subscribe(
-        (response) => {
-          console.log('Enrollment added successfully:', response);
+      this.enrollmentService.isUserEnrolled(course.courseID, this.userId.toString()).subscribe(
+        (isEnrolled: boolean) => {
+          if (isEnrolled) {
+            this.snackbar.open('You are already enrolled in this course!', 'Close', {
+              duration: 3000,
+              verticalPosition: 'top'
+            });
+          } else {
+            const enrollment: EnrollmentDto = {
+              enrollmentID: 0, // Assuming 0 for new enrollment, adjust as needed
+              courseID: course.courseID,
+              title: course.title,
+              userID: this.userId, // Ensure this.userId is correctly set
+              enrollmentDate: new Date() // Ensure date is in ISO format
+            };
+
+            this.enrollmentService.addEnrollment(enrollment).subscribe(
+              (response) => {
+                this.snackbar.open('Successfully enrolled in course', 'Close', {
+                  duration: 3000,
+                  verticalPosition: 'top'
+                });
+                console.log('Enrollment added successfully:', response);
+              },
+              (error) => {
+                console.error('Error adding enrollment:', error);
+                this.snackbar.open('Failed to enroll in course', 'Close', {
+                  duration: 3000,
+                  verticalPosition: 'top'
+                });
+              }
+            );
+          }
         },
-        (error) => {
-          console.error('Error adding enrollment:', error);
+        (error: any) => {
+          console.error('Error checking enrollment status:', error);
+          this.snackbar.open('Failed to check enrollment status', 'Close', {
+            duration: 3000,
+            verticalPosition: 'top'
+          });
         }
       );
     } else {
       console.error('No course selected for enrollment.');
     }
   }
-  
-  
-  
-
-
-  
 
   confirmDelete(course: ICourse): void {
     if (confirm(`Do you want to delete ${course.title}?`)) {
