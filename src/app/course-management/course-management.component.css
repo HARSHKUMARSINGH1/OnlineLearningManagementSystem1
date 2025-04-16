@@ -10,7 +10,7 @@
 .course-card {
   border: 1px solid #007bff; /* Blue border */
   border-radius: 10px; /* Rounded corners */
-  background-color: #ffffff; /* White background */
+  background-color: rgba(255, 255, 255, 0.8); /* White background with 80% opacity */
   padding: 20px; /* Padding inside the card */
   width: 300px; /* Fixed width for each card */
   height: 400px; /* Increased height for each card */
@@ -94,7 +94,7 @@
 
 .header-title {
   font-size: 2em; /* Larger font size */
-  color: #007bff; /* Blue text */
+  color: #4b4be8; /* Blue text */
   margin: 0; /* Remove default margin */
   animation: fadeIn 2s; /* Fade-in animation */
 }
@@ -126,7 +126,7 @@
   right: 0; /* Align to the right */
   background-color: #f8f9fa; /* Light background color */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  border-radius: 5px; /* Rounded corners */
+  
   z-index: 1; /* Ensure dropdown is above other elements */
   animation: fadeIn 0.3s; /* Fade-in animation */
 }
@@ -136,7 +136,7 @@
   border: none; /* Remove border */
   color: white; /* White text */
   padding: 10px 20px; /* Padding for the button */
-  border-radius: 5px; /* Rounded corners */
+  
   cursor: pointer; /* Pointer cursor on hover */
   display: block; /* Block display for full width */
   width: 100%; /* Full width */
@@ -157,10 +157,28 @@
 }
 
 .courses-title {
-  font-size: 1.5em; /* Larger font size */
-  color: #007bff; /* Blue text */
+  font-size: 2.5em; /* Larger font size */
+  color: #111213; /* Blue text */
   margin-bottom: 20px; /* Margin at the bottom */
   text-align: center; /* Center-align the title */
+}
+
+.instructor-dashboard {
+  background-image: url('https://img.freepik.com/free-photo/flat-lay-desk-arrangement-with-copy-space_23-2148128351.jpg?t=st=1744776484~exp=1744780084~hmac=19a7b8b50a5a3af5a3d490c7b6bd3ad20facb3e7530e91e7a170244af6d94495&w=1380');
+  background-size: cover; /* Ensure the image covers the entire background */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  padding: 20px; /* Padding around the content */
+  min-height: 100vh; /* Ensure the background covers the full viewport height */
+}
+
+.student-dashboard {
+  background-image: url('https://img.freepik.com/free-photo/flat-lay-aesthetic-office-desk_23-2148219266.jpg?t=st=1744777110~exp=1744780710~hmac=20da6ad9b6b33c16ca84766dd787f7b24549d9b4efd01636626ad2b7543f9c71&w=1380');
+  background-size: cover; /* Ensure the image covers the entire background */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  padding: 20px; /* Padding around the content */
+  min-height: 100vh; /* Ensure the background covers the full viewport height */
 }
 
 @keyframes fadeIn {

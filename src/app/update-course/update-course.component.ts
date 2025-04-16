@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CourseManagementService } from 'src/app/services/course-management.service';
 import { UpdateCourse } from 'src/app/models/update-course.model';
-import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar'; // Import MatSnackBar
+
 @Component({
   selector: 'app-update-course',
   templateUrl: './update-course.component.html',
@@ -21,7 +22,8 @@ export class UpdateCourseComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private courseService: CourseManagementService
+    private courseService: CourseManagementService,
+    private snackBar: MatSnackBar // Inject MatSnackBar
   ) {
     this.courseId = this.route.snapshot.params['id'];
   }
@@ -33,6 +35,9 @@ export class UpdateCourseComponent implements OnInit {
       },
       (error) => {
         console.error('Failed to load course details', error);
+        this.snackBar.open('Failed to load course details', 'Close', {
+          duration: 3000,
+        });
       }
     );
   }
@@ -40,18 +45,21 @@ export class UpdateCourseComponent implements OnInit {
   onSubmit(): void {
     this.courseService.updateCourse(this.courseId, this.course).subscribe(
       (response) => {
-        alert('Course updated successfully');
+        this.snackBar.open('Course updated successfully', 'Close', {
+          duration: 3000,
+        });
         this.router.navigate(['/course-management']);
       },
       (error) => {
         console.error('Failed to update course', error);
-        alert('Failed to update course. Please try again later.');
+        this.snackBar.open('Failed to update course. Please try again later.', 'Close', {
+          duration: 3000,
+        });
       }
     );
   }
-  
-    navigateBack(): void {
-        this.router.navigate(['/course-management']);
-      }
-    
+
+  navigateBack(): void {
+    this.router.navigate(['/course-management']);
+  }
 }
