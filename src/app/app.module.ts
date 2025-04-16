@@ -19,7 +19,7 @@ import { TrackStudentProgressComponent } from './track-student-progress/track-st
 import { ReportComponent } from './report/report.component';
 import { TrackStudentService } from './services/track-student.service';
 import { ReportService } from './services/report.service';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 // Define routes
 const routes: Routes = [
@@ -40,6 +40,7 @@ import { ViewProfileComponent } from './user/viewprofile/viewprofile.component';
 import { UpdateProfileComponent } from './user/updateprofile/updateprofile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz-attempt.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -57,7 +58,7 @@ import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz
     ViewProfileComponent,
     UpdateProfileComponent,
     UpdateCourseComponent,
-    StudentQuizAttemptComponent
+    StudentQuizAttemptComponent,
     UpdateCourseComponent,
     AddCourseComponent,
     TrackStudentProgressComponent,
@@ -67,24 +68,23 @@ import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    MatTableModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
     AuthModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
-  ],
-
     ReactiveFormsModule,
-    RouterModule.forRoot(routes) 
+    MatTableModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
+  ],
     
     
   
   providers: [
-    CourseManagementService,QuizService,{
-    CourseManagementService,TrackStudentService, ReportService,{
+    
+    CourseManagementService,TrackStudentService, QuizService, ReportService,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorInterceptor,
     multi: true // Allows multiple interceptors

@@ -1,12 +1,13 @@
 /* Container for the report */
 .report-container {
-  width: 90%;
-  max-width: 1000px;
-  margin: 20px auto; /* Centers the container with some margin on top and bottom */
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-image: url('/assets/images/9361354.jpg'); /* Path to your image */
+  background-size: cover; /* Ensure the image covers the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  height: 100vh; /* Adjust height as needed */
+  width: 100%; /* Set full width */
+  padding: 20px; /* Add padding if needed */
+  color: rgb(15, 14, 14); /* Optional: Set text color for readability */
 }
 
 /* Heading style */

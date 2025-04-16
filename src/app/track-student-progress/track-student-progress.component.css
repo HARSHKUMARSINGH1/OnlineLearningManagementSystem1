@@ -8,20 +8,21 @@ html, body {
 
 /* Container styling and overall layout */
 .track-student-progress-container {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 20px;
-  background-color: #fff8e1; /* White background */
-  border: 1px solid #007bff; /* Blue border */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url('/assets/images/20944387.jpg'); /* Path to your image */
+  background-size: cover; /* Ensure the image covers the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  height: 100vh; /* Adjust height as needed */
+  width: 100%; /* Set full width */
+  padding: 20px; /* Add padding if needed */
+  color: rgb(15, 14, 14); /* Optional: Set text color for readability */
 }
+
 
 /* Header styling */
 .header-title {
   text-align: center;
-  color: #007bff; /* Blue text */
+  color: #01070f; /* Blue text */
   margin-bottom: 1.5rem;
 }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar'; // Import MatSnackBar
 import { TrackStudentService } from '../services/track-student.service';
 
 @Component({
@@ -12,7 +13,11 @@ export class TrackStudentProgressComponent implements OnInit {
   // Variable to store fetched progress data
   progressData: any;
 
-  constructor(private trackStudentService: TrackStudentService) {}
+  // Inject MatSnackBar in the constructor
+  constructor(
+    private trackStudentService: TrackStudentService,
+    private snackBar: MatSnackBar // Inject MatSnackBar
+  ) {}
 
   ngOnInit(): void {}
 
@@ -20,6 +25,11 @@ export class TrackStudentProgressComponent implements OnInit {
   trackProgress(): void {
     if (!this.userId) {
       console.warn('UserID is required');
+      this.snackBar.open('Please enter a UserID before submitting.', 'Close', {
+        duration: 3000,
+        verticalPosition: 'top', // Position the snackbar at the top
+        horizontalPosition: 'center' // Center it horizontally
+      });
       return;
     }
 
@@ -27,13 +37,25 @@ export class TrackStudentProgressComponent implements OnInit {
     this.trackStudentService.getProgressByUserId(this.userId).subscribe(
       (data: any) => {
         console.log(`Fetched progress data for UserID ${this.userId}:`, data);
-        this.progressData = data;
+        
+        if (data && Object.keys(data).length > 0) {
+          this.progressData = data;
+        } else {
+          this.snackBar.open('Entered UserID is incorrect!', 'Close', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'center'
+          });
+        }
       },
       (error: any) => {
         console.error(`Error fetching progress data for UserID ${this.userId}:`, error);
+        this.snackBar.open('Entered UserID is incorrect!', 'Close', {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
       }
     );
   }
-
-  // Additional logic can be added here if needed
 }
