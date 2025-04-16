@@ -22,6 +22,8 @@ import { EnrollmentAndAccessComponent } from './enrollment-and-access/enrollment
 import { EnrollmentAndAccessService } from './services/enrollment-and-access.service';
 
 
+import { MatSnackBarModule } from '@angular/material/snack-bar'; // Import MatSnackBarModule
+
 const routes: Routes = [
   { path: 'course-management', component: CourseManagementComponent },
   { path: 'add-course', component: AddCourseComponent },
@@ -30,7 +32,10 @@ const routes: Routes = [
   { path: 'enrollments', component: EnrollmentAndAccessComponent },
   { path: '', redirectTo: '/course-management', pathMatch: 'full' },
   
+  { path: 'update-course/:id', component: UpdateCourseComponent },
+  { path: '', redirectTo: '/course-management', pathMatch: 'full' }
 ];
+
 import { AuthModule } from './auth/auth.module';
 import { FooterComponent } from './common/footer/footer.component';
 import { HeaderComponent } from './common/header/header.component';
@@ -41,7 +46,7 @@ import { UpdateProfileComponent } from './user/updateprofile/updateprofile.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatSnackBarModule } from '@angular/material/snack-bar'
+
 import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz-attempt.component';
 
 
@@ -80,11 +85,13 @@ import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz
     BrowserAnimationsModule,
     MatSnackBarModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
     
     
   
+
   providers: [
     CourseManagementService,EnrollmentAndAccessService,QuizService,{
     provide: HTTP_INTERCEPTORS,
@@ -92,6 +99,7 @@ import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz
     multi: true // Allows multiple interceptors
   }],
     
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

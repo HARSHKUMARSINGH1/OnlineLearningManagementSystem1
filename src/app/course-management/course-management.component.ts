@@ -8,6 +8,9 @@ import { ICourse } from 'src/app/models/course-model';
 import { jwtDecode } from 'jwt-decode'; 
 import { EnrollmentDto } from '../models/enrollment.dto';
 
+import { jwtDecode } from 'jwt-decode'; // Correct import
+import { MatSnackBar } from '@angular/material/snack-bar'; // Import MatSnackBar
+
 @Component({
   selector: 'app-course-management',
   templateUrl: './course-management.component.html',
@@ -26,6 +29,9 @@ export class CourseManagementComponent implements OnInit {
     private router: Router,
     private enrollmentService: EnrollmentAndAccessService,
     private snackbar: MatSnackBar
+    private authService: AuthService, // Inject AuthService
+    private router: Router,
+    private snackBar: MatSnackBar // Inject MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -76,7 +82,12 @@ export class CourseManagementComponent implements OnInit {
   }
 
   navigateToUpdateCourse(course: ICourse): void {
-    this.router.navigate(['/update-course', course.courseID]);
+    this.router.navigate(['/update-course', course.courseID]).then(() => {
+      this.snackBar.open('Navigated to update course successfully', 'Close', {
+        duration: 3000,
+        verticalPosition: 'top' // Set position to top
+      });
+    });
   }
 
   navigateToEnrollments() : void{
@@ -135,27 +146,56 @@ export class CourseManagementComponent implements OnInit {
             duration: 3000,
             verticalPosition: 'top'
           });
+  enrollInCourse(): void {
+    if (this.selectedCourse) {
+      this.courseService.enrollInCourse(this.selectedCourse.courseID).subscribe(
+        (response) => {
+          this.snackBar.open('Enrolled in course successfully', 'Close', {
+            duration: 3000,
+            verticalPosition: 'top' // Set position to top
+          });
+        },
+        (error) => {
+          this.snackBar.open('Failed to enroll in course. Please try again later.', 'Close', {
+            duration: 3000,
+            verticalPosition: 'top' // Set position to top
+          });
         }
       );
     } else {
       console.error('No course selected for enrollment.');
     }
   }
+    }
+  }
 
   confirmDelete(course: ICourse): void {
-    if (confirm(`Do you want to delete ${course.title}?`)) {
+    const snackBarRef = this.snackBar.open(`Do you want to delete ${course.title}?`, 'Confirm', {
+      duration: 5000,
+      verticalPosition: 'top' // Set position to top
+    });
+
+    snackBarRef.onAction().subscribe(() => {
       this.deleteCourse(course.courseID);
-    }
+    });
   }
 
   deleteCourse(courseId: number): void {
     this.courseService.deleteCourse(courseId).subscribe(
       () => {
         this.courses = this.courses.filter(course => course.courseID !== courseId);
-        alert('Course deleted successfully');
+        this.snackBar.open('Course deleted successfully', 'Close', {
+          duration: 3000,
+          verticalPosition: 'top' // Set position to top
+        });
       },
       (error: any) => {
         alert('Failed to delete course. Please try again later.');
+      (error) => {
+        this.snackBar.open('Failed to delete course. Please try again later.', 'Close', {
+          duration: 3000,
+          verticalPosition: 'top' // Set position to top
+        });
       }
     );
   }
