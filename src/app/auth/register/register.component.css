@@ -1,10 +1,12 @@
 body {
-    background-color: #f8f9fa; /* Light grey background */
-    display: flex;
-    justify-content: center; /* Center the content horizontally */
-    align-items: center; /* Center the content vertically */
-    height: 100vh;
-  }
+  background-image: url('src/assets/login.jpg'); /* Add your background image here */
+  background-size: cover; /* Ensure the image covers the entire background */
+  background-position: center; /* Center the background image */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
   
   .card {
     border: 1px solid #007bff; /* Green border */

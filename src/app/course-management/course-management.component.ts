@@ -4,6 +4,8 @@ import { CourseManagementService } from 'src/app/services/course-management.serv
 import { AuthService } from 'src/app/services/auth.service'; // Import AuthService
 import { ICourse } from 'src/app/models/course-model';
 import { jwtDecode } from 'jwt-decode'; // Correct import
+import { MatSnackBar } from '@angular/material/snack-bar'; // Import MatSnackBar
+
 @Component({
   selector: 'app-course-management',
   templateUrl: './course-management.component.html',
@@ -18,7 +20,8 @@ export class CourseManagementComponent implements OnInit {
   constructor(
     private courseService: CourseManagementService,
     private authService: AuthService, // Inject AuthService
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar // Inject MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -57,7 +60,6 @@ export class CourseManagementComponent implements OnInit {
       (error: any) => {
         console.error('Error fetching user profile:', error);
       }
-       // Debugging log
     );
   }
 
@@ -68,7 +70,12 @@ export class CourseManagementComponent implements OnInit {
   }
 
   navigateToUpdateCourse(course: ICourse): void {
-    this.router.navigate(['/update-course', course.courseID]);
+    this.router.navigate(['/update-course', course.courseID]).then(() => {
+      this.snackBar.open('Navigated to update course successfully', 'Close', {
+        duration: 3000,
+        verticalPosition: 'top' // Set position to top
+      });
+    });
   }
 
   navigateToListAllQuiz(): void {
@@ -79,32 +86,46 @@ export class CourseManagementComponent implements OnInit {
     if (this.selectedCourse) {
       this.courseService.enrollInCourse(this.selectedCourse.courseID).subscribe(
         (response) => {
-          alert('Enrolled in course successfully');
+          this.snackBar.open('Enrolled in course successfully', 'Close', {
+            duration: 3000,
+            verticalPosition: 'top' // Set position to top
+          });
         },
         (error) => {
-          alert('Failed to enroll in course. Please try again later.');
+          this.snackBar.open('Failed to enroll in course. Please try again later.', 'Close', {
+            duration: 3000,
+            verticalPosition: 'top' // Set position to top
+          });
         }
       );
     }
   }
 
-  
-  
-
   confirmDelete(course: ICourse): void {
-    if (confirm(`Do you want to delete ${course.title}?`)) {
+    const snackBarRef = this.snackBar.open(`Do you want to delete ${course.title}?`, 'Confirm', {
+      duration: 5000,
+      verticalPosition: 'top' // Set position to top
+    });
+
+    snackBarRef.onAction().subscribe(() => {
       this.deleteCourse(course.courseID);
-    }
+    });
   }
 
   deleteCourse(courseId: number): void {
     this.courseService.deleteCourse(courseId).subscribe(
       () => {
         this.courses = this.courses.filter(course => course.courseID !== courseId);
-        alert('Course deleted successfully');
+        this.snackBar.open('Course deleted successfully', 'Close', {
+          duration: 3000,
+          verticalPosition: 'top' // Set position to top
+        });
       },
       (error) => {
-        alert('Failed to delete course. Please try again later.');
+        this.snackBar.open('Failed to delete course. Please try again later.', 'Close', {
+          duration: 3000,
+          verticalPosition: 'top' // Set position to top
+        });
       }
     );
   }

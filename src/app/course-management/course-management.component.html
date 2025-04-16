@@ -1,9 +1,16 @@
 <header class="header">
   <h1 class="header-title" *ngIf="userType === 'Student'">Student Dashboard</h1>
   <h1 class="header-title" *ngIf="userType === 'Instructor'">Instructor Dashboard</h1>
-  <div *ngIf="userType === 'Instructor'" class="dropdown">
+  <div class="dropdown">
     <button class="dropdown-btn">☰</button>
     <div class="dropdown-content">
+      <button *ngIf="userType === 'Instructor'" class="dropdown-item" [routerLink]="['/add-course']">Create Course</button>
+      <button *ngIf="userType === 'Instructor'" class="dropdown-item" [routerLink]="['/list-all-quiz']">Create Quiz</button>
+      <button *ngIf="userType === 'Instructor'" class="dropdown-item">Report</button>
+      <button *ngIf="userType === 'Instructor'" class="dropdown-item">Progress Tracking</button>
+      <button *ngIf="userType === 'Student'" class="dropdown-item">Enrolled Courses</button>
+      <button *ngIf="userType === 'Student'" class="dropdown-item" [routerLink]="['/student-answer']">Quiz</button>
+      <button *ngIf="userType === 'Student'" class="dropdown-item">Progress Tracking</button>
       <button class="create-course-btn" [routerLink]="['/add-course']">Create Course</button>
       <button class="create-quiz-btn">Create Quiz</button>
       <button class="report-btn" [routerLink]="['/report']">Report</button>

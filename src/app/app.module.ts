@@ -31,6 +31,7 @@ const routes: Routes = [
   { path: 'track-student-progress', component: TrackStudentProgressComponent},
   { path: 'report', component: ReportComponent}
 ];
+
 import { AuthModule } from './auth/auth.module';
 import { FooterComponent } from './common/footer/footer.component';
 import { HeaderComponent } from './common/header/header.component';
@@ -39,6 +40,7 @@ import { AuthInterceptorInterceptor } from './interceptors/interceptor.intercept
 import { ViewProfileComponent } from './user/viewprofile/viewprofile.component';
 import { UpdateProfileComponent } from './user/updateprofile/updateprofile.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz-attempt.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
