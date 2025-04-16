@@ -26,6 +26,9 @@ import { AuthInterceptorInterceptor } from './interceptors/interceptor.intercept
 import { ViewProfileComponent } from './user/viewprofile/viewprofile.component';
 import { UpdateProfileComponent } from './user/updateprofile/updateprofile.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 
 @NgModule({
@@ -49,7 +52,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    ToastrModule.forRoot()
     
     
   ],

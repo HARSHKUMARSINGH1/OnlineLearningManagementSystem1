@@ -1,29 +1,80 @@
+/* styles.css */
 header {
-    background-color: #000000; /* Blue background */
-    padding: 10px 0;
-  }
-  
-  h1 {
-    margin: 0;
-    font-size: 24px;
-  }
-  
+  background: linear-gradient(90deg, #000000, #434343); /* Gradient background */
+  padding: 10px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+header:hover {
+  background-color: #333333; /* Darker background on hover */
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  transition: color 0.3s ease; /* Smooth transition */
+}
+
+h1 a {
+  color: white;
+  text-decoration: none;
+}
+
+h1 a:hover {
+  color: #ffcc00; /* Change color on hover */
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+nav a, nav button {
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+  font-size: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+nav a:hover, nav button:hover {
+  color: #ffcc00; /* Change color on hover */
+  transform: scale(1.1); /* Slightly enlarge on hover */
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
   nav {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
   }
-  
+
   nav a, nav button {
-    color: white;
-    text-decoration: none;
-    margin-left: 15px;
-    font-size: 18px;
-    background: none;
-    border: none;
-    cursor: pointer;
+      margin-left: 0;
+      margin-bottom: 10px;
   }
-  
-  nav a:hover, nav button:hover {
-    text-decoration: underline;
+
+  .col.text-right {
+      text-align: left;
   }
+
+  /* styles.css */
+.toast-success {
+  background-color: #28a745 !important;
+  color: white !important;
+}
+/* styles.css */
+#toast-container > div {
+  opacity: 1 !important;
+}
+
+
+}
