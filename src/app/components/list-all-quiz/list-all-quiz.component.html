@@ -1,0 +1,86 @@
+<!-- Add New Quiz Form -->
+<div class="quiz-form">
+  <h3>Add New Quiz</h3>
+  <div class="form-row">
+    <input type="text" [(ngModel)]="newQuiz.title" placeholder="Title" />
+    <input type="number" [(ngModel)]="newQuiz.totalMarks" placeholder="Total Marks" />
+  </div>
+  <div class="form-row">
+    <textarea [(ngModel)]="newQuiz.questionList" placeholder="Questions"></textarea>
+    <input type="number" [(ngModel)]="newQuiz.courseID" placeholder="Course ID" />
+  </div>
+  <div class="form-row">
+    <button (click)="addQuiz()" class="btn-submit">Submit</button>
+    <button (click)="resetNewQuiz()" class="btn-clear">Clear</button>
+  </div>
+</div>
+
+<div class="quiz-list">
+  <h3>All Quizzes</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Questions</th>
+        <th>Total Marks</th>
+        <th>Course ID</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let quiz of quizzes; let i = index">
+        <td>
+          <div *ngIf="editingIndex !== i; else editTitle">
+            {{ quiz.title }}
+          </div>
+          <ng-template #editTitle>
+            <input [(ngModel)]="quiz.title" type="text" placeholder="Edit Title" />
+          </ng-template>
+        </td>
+        <td>
+          <div *ngIf="editingIndex !== i; else editQuestions">
+            {{ quiz.questionList }}
+          </div>
+          <ng-template #editQuestions>
+            <textarea [(ngModel)]="quiz.questionList" placeholder="Edit Questions"></textarea>
+          </ng-template>
+        </td>
+        <td>
+          <div *ngIf="editingIndex !== i; else editTotalMarks">
+            {{ quiz.totalMarks }}
+          </div>
+          <ng-template #editTotalMarks>
+            <input [(ngModel)]="quiz.totalMarks" type="number" placeholder="Edit Total Marks" />
+          </ng-template>
+        </td>
+        <td>
+          <div *ngIf="editingIndex !== i; else editCourseID">
+            {{ quiz.courseID }}
+          </div>
+          <ng-template #editCourseID>
+            <input [(ngModel)]="quiz.courseID" type="number" placeholder="Edit Course ID" />
+          </ng-template>
+        </td>
+        <td>
+          <div *ngIf="editingIndex !== i">
+            <button (click)="enableEditing(i)">Edit</button>
+            <button (click)="deleteQuiz(quiz.quizID)">Delete</button>
+          </div>
+          <div *ngIf="editingIndex === i">
+            <button (click)="saveChanges(quiz)">Save</button>
+            <button (click)="cancelEditing()">Cancel</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Common Button for Answers -->
+<div class="button-container">
+  <button (click)="redirectToQuizAttempt()" class="btn-primary">Answers</button>
+  <button (click)="goBack()" class="back-btn">Back</button>
+</div>
+
+

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -13,13 +13,19 @@ export class RegisterComponent {
   password: string = '';
   role: string = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private snackbar: MatSnackBar) { }
 
   onRegister() {
   const user = { name: this.name, email: this.email, password: this.password, role: this.role };
   this.authService.register(user).subscribe(response => {
+    this.snackbar.open('User registered successfully', 'Close', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            panelClass : ['custom-snackbar']
+          });
     console.log('User registered successfully', response);
-    alert(response); // Display the response message
+     // Display the response message
     console.log('Navigating to login page');
     this.router.navigateByUrl('/login').then(success => {
       console.log('Navigation success:', success);

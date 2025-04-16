@@ -2,13 +2,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { RouterModule, Routes } from '@angular/router'; // Import RouterModule
 import { RouterModule, Routes } from '@angular/router';
 import { UpdateCourseComponent } from './update-course/update-course.component';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CourseManagementComponent } from 'src/app/course-management/course-management.component';
 import { CourseManagementService } from './services/course-management.service';
 import { AddCourseComponent } from './add-course/add-course.component';
+import { ListAllQuizComponent } from './components/list-all-quiz/list-all-quiz.component';
+import { QuizService } from './services/quiz.service';
+import { QuizAttemptComponent } from './quiz-attempt/quiz-attempt.component';
+import { StudentAnswerComponent } from './components/student-answer/student-answer.component';
+import { AppRoutingModule } from './app-routing.module'; // Import AppRoutingModule
+
 import { MatSnackBarModule } from '@angular/material/snack-bar'; // Import MatSnackBarModule
 
 // Define routes
@@ -28,33 +35,60 @@ import { ViewProfileComponent } from './user/viewprofile/viewprofile.component';
 import { UpdateProfileComponent } from './user/updateprofile/updateprofile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz-attempt.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     CourseManagementComponent,
     AddCourseComponent,
+    ListAllQuizComponent,
+    QuizAttemptComponent,
+    StudentAnswerComponent,
+    AddCourseComponent,
     CourseManagementComponent,
     FooterComponent,
     HeaderComponent,
     ViewProfileComponent,
     UpdateProfileComponent,
-    UpdateCourseComponent
+    UpdateCourseComponent,
+    StudentQuizAttemptComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    MatTableModule,
+    AppRoutingModule,
     RouterModule.forRoot(routes),
     AuthModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    ToastrModule.forRoot(),
+    ReactiveFormsModule
+  ],
+
+    
+    
+  
+    ReactiveFormsModule,
     MatSnackBarModule,
     BrowserAnimationsModule // Add MatSnackBarModule here
   ],
   providers: [
+    CourseManagementService,QuizService,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorInterceptor,
+    multi: true // Allows multiple interceptors
+  }],
     CourseManagementService,
     {
       provide: HTTP_INTERCEPTORS,
