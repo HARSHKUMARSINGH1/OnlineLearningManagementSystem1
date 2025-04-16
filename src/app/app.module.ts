@@ -42,7 +42,7 @@ import { UpdateProfileComponent } from './user/updateprofile/updateprofile.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz-attempt.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({

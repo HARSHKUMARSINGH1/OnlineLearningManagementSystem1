@@ -6,14 +6,13 @@
     <div class="dropdown-content">
       <button *ngIf="userType === 'Instructor'" class="dropdown-item" [routerLink]="['/add-course']">Create Course</button>
       <button *ngIf="userType === 'Instructor'" class="dropdown-item" [routerLink]="['/list-all-quiz']">Create Quiz</button>
-      <button *ngIf="userType === 'Instructor'" class="dropdown-item">Report</button>
-      <button *ngIf="userType === 'Instructor'" class="dropdown-item">Progress Tracking</button>
+      <button *ngIf="userType === 'Instructor'" class="report-btn" [routerLink]="['/report']">Report</button>
+      <button *ngIf="userType === 'Instructor'" class="progress-btn" [routerLink]="['/track-student-progress']">Progress Tracking</button>
       <button *ngIf="userType === 'Student'" class="dropdown-item">Enrolled Courses</button>
       <button *ngIf="userType === 'Student'" class="dropdown-item" [routerLink]="['/student-answer']">Quiz</button>
       <button *ngIf="userType === 'Student'" class="dropdown-item">Progress Tracking</button>
       <button class="create-course-btn" [routerLink]="['/add-course']">Create Course</button>
       <button class="create-quiz-btn">Create Quiz</button>
-      <button class="report-btn" [routerLink]="['/report']">Report</button>
       <button class="progress-btn" [routerLink]="['/track-student-progress']">Progress Tracking</button>
     </div>
   </div>
