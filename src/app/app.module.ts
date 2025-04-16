@@ -16,7 +16,7 @@ import { ListAllQuizComponent } from './components/list-all-quiz/list-all-quiz.c
 import { QuizService } from './services/quiz.service';
 import { QuizAttemptComponent } from './quiz-attempt/quiz-attempt.component';
 import { StudentAnswerComponent } from './components/student-answer/student-answer.component';
-import { AppRoutingModule } from './app-routing.module'; // Import AppRoutingModule
+
 
 import { EnrollmentAndAccessComponent } from './enrollment-and-access/enrollment-and-access.component';
 import { EnrollmentAndAccessService } from './services/enrollment-and-access.service';
@@ -40,11 +40,11 @@ import { ViewProfileComponent } from './user/viewprofile/viewprofile.component';
 import { UpdateProfileComponent } from './user/updateprofile/updateprofile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
+
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz-attempt.component';
-import { MatSnackBarModule} from '@angular/material/snack-bar';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 
 @NgModule({
@@ -62,12 +62,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ViewProfileComponent,
     UpdateProfileComponent,
     UpdateCourseComponent,
-    StudentQuizAttemptComponent
+    StudentQuizAttemptComponent,
+    EnrollmentAndAccessComponent
   ],
-    UpdateCourseComponent,
-    AddCourseComponent,
-    EnrollmentAndAccessComponent,
-    ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -82,21 +79,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    ToastrModule.forRoot(),
-    ReactiveFormsModule
-  ],
-
     ReactiveFormsModule,
-    RouterModule.forRoot(routes),
-    CommonModule,
-    BrowserAnimationsModule,
-    MatSnackBarModule
+    CommonModule
+  ],
     
     
   
   providers: [
-    CourseManagementService,QuizService,{
-    CourseManagementService,EnrollmentAndAccessService,{
+    CourseManagementService,EnrollmentAndAccessService,QuizService,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorInterceptor,
     multi: true // Allows multiple interceptors
