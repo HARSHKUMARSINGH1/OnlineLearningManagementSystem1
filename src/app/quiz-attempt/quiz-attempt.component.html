@@ -1,0 +1,40 @@
+<div class="container">
+  <h2>Quiz Attempts</h2>
+
+  <!-- Error message display -->
+  <div *ngIf="errorMessage" class="feedback-message">{{ errorMessage }}</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Response</th>
+        <th>Marks</th>
+        <th>Quiz ID</th>
+        <th>User ID</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let answer of answers">
+        <td>{{ answer.answerID }}</td>
+        <td>{{ answer.response }}</td>
+        <td>
+          <!-- Editable marks field -->
+          <input type="number" [(ngModel)]="answer.marks" />
+        </td>
+        <td>{{ answer.quizID }}</td>
+        <td>{{ answer.userID }}</td>
+        <td>
+          <!-- Save button -->
+          <button (click)="updateMarks(answer)">Save</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="button-container">
+  <button (click)="goBack()" class="back-btn">Back</button>
+</div>
+

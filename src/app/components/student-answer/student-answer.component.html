@@ -1,0 +1,49 @@
+<div class="quiz-list">
+  <h1 class="centered-heading">Available Quizzes</h1>
+
+  <!-- Display error message if there is an issue -->
+  <div *ngIf="errorMessage" class="feedback-message">{{ errorMessage }}</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Questions</th>
+        <th>Total Marks</th>
+        <th>Course ID</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let quiz of quizzes">
+        <td>{{ quiz.title }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let question of quiz.questions">{{ question }}</li>
+          </ul>
+        </td>
+        <td>{{ quiz.totalMarks }}</td>
+        <td>{{ quiz.courseID }}</td>
+        <td>
+          <!-- Button to attempt the quiz -->
+          <button (click)="showAttemptForm(quiz.quizID)">Attempt</button>
+
+          <!-- Display a textbox and Submit button when the quiz is being attempted -->
+          <div *ngIf="attemptingQuizId === quiz.quizID">
+            <input
+              type="text"
+              [(ngModel)]="studentAnswer"
+              placeholder="Enter your answer"
+            />
+            <button (click)="submitAnswer(quiz.quizID)">Submit</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Back Button Container Positioned Above Footer -->
+<div class="footer-container">
+  <button class="back-button" (click)="goBack()">Back</button>
+</div>

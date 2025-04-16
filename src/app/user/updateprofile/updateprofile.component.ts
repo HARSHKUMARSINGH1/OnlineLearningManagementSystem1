@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode'; // Correct import
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-updateprofile',
@@ -14,7 +15,7 @@ export class UpdateProfileComponent implements OnInit {
   password: string = ''; // Keep password in the component
   role: string = '';
 
-  constructor(private profileService: AuthService, private router: Router) {}
+  constructor(private profileService: AuthService, private router: Router, private snackbar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.loadProfileData();
@@ -61,6 +62,12 @@ export class UpdateProfileComponent implements OnInit {
 
     this.profileService.updateProfile(profileData).subscribe(
       response => {
+        this.snackbar.open('Profile updated successfully', 'Close', {
+                duration: 3000,
+                horizontalPosition: 'center',
+                verticalPosition: 'bottom',
+                panelClass : ['custom-snackbar']
+              });
         console.log('Profile updated successfully:', response);
         this.router.navigate(['/profile']); // Navigate to view profile page after update
       },

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { filter } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ export class HeaderComponent implements OnInit {
   isLoggedIn: boolean = false;
   userId: string | null = null;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService,private snackbar : MatSnackBar) {}
 
   ngOnInit(): void {
     this.router.events.pipe(
@@ -47,6 +48,13 @@ validateToken(): void {
   logout(): void {
     localStorage.removeItem('jwtToken');
     this.isLoggedIn = false;
+    
+this.snackbar.open('User logged out successfully', 'Close', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      });
+  
     this.router.navigate(['/login']);
   }
 }

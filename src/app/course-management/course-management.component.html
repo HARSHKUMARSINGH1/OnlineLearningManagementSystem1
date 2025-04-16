@@ -5,7 +5,8 @@
     <button class="dropdown-btn">☰</button>
     <div class="dropdown-content">
       <button class="create-course-btn" [routerLink]="['/add-course']">Create Course</button>
-      <button class="create-quiz-btn">Create Quiz</button>
+      <button class="create-quiz-btn" [routerLink]="['/list-all-quiz']">Create Quiz</button>
+
       <button class="report-btn">Report</button>
       <button class="progress-btn">Progress Tracking</button>
     </div>
@@ -13,6 +14,8 @@
   <div *ngIf="userType === 'Student'" class="dropdown">
     <button class="dropdown-btn">☰</button>
     <div class="dropdown-content">
+      <button class="enrollment-btn">Enrolled Courses</button>
+      <button class="quiz-btn" [routerLink]="['/student-answer']">Quiz</button>
       <button class="enrollment-btn" [routerLink]="['/enrollment-and-access']" [queryParams]="{ userId: userId }">Enrolled Courses</button>
       <button class="quiz-btn">Quiz</button>
       <button class="progress-btn">Progress Tracking</button>

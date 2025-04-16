@@ -79,6 +79,18 @@ export class CourseManagementComponent implements OnInit {
     this.router.navigate(['/update-course', course.courseID]);
   }
 
+  navigateToListAllQuiz(): void {
+    this.router.navigate(['/list-all-quiz']);
+  }
+  
+  enrollInCourse(): void {
+    if (this.selectedCourse) {
+      this.courseService.enrollInCourse(this.selectedCourse.courseID).subscribe(
+        (response) => {
+          alert('Enrolled in course successfully');
+        },
+        (error) => {
+          alert('Failed to enroll in course. Please try again later.');
   addEnrollment(course: ICourse): void {
     if (this.userId === 0) {
       console.error('User ID is not set.');
