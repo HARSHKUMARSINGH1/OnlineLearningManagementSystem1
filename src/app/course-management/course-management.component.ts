@@ -8,9 +8,6 @@ import { ICourse } from 'src/app/models/course-model';
 import { jwtDecode } from 'jwt-decode'; 
 import { EnrollmentDto } from '../models/enrollment.dto';
 
-import { jwtDecode } from 'jwt-decode'; // Correct import
-import { MatSnackBar } from '@angular/material/snack-bar'; // Import MatSnackBar
-
 @Component({
   selector: 'app-course-management',
   templateUrl: './course-management.component.html',
@@ -28,10 +25,7 @@ export class CourseManagementComponent implements OnInit {
     private authService: AuthService, 
     private router: Router,
     private enrollmentService: EnrollmentAndAccessService,
-    private snackbar: MatSnackBar
-    private authService: AuthService, // Inject AuthService
-    private router: Router,
-    private snackBar: MatSnackBar // Inject MatSnackBar
+    private snackBar: MatSnackBar // Corrected MatSnackBar injection
   ) {}
 
   ngOnInit(): void {
@@ -90,14 +84,13 @@ export class CourseManagementComponent implements OnInit {
     });
   }
 
-  navigateToEnrollments() : void{
+  navigateToEnrollments(): void {
     this.router.navigate(['/enrollment-and-access']);
   }
 
   navigateToListAllQuiz(): void {
     this.router.navigate(['/list-all-quiz']);
   }
-  
 
   addEnrollment(course: ICourse): void {
     if (this.userId === 0) {
@@ -109,7 +102,7 @@ export class CourseManagementComponent implements OnInit {
       this.enrollmentService.isUserEnrolled(course.courseID, this.userId.toString()).subscribe(
         (isEnrolled: boolean) => {
           if (isEnrolled) {
-            this.snackbar.open('You are already enrolled in this course!', 'Close', {
+            this.snackBar.open('You are already enrolled in this course!', 'Close', {
               duration: 3000,
               verticalPosition: 'top'
             });
@@ -124,7 +117,7 @@ export class CourseManagementComponent implements OnInit {
 
             this.enrollmentService.addEnrollment(enrollment).subscribe(
               (response) => {
-                this.snackbar.open('Successfully enrolled in course', 'Close', {
+                this.snackBar.open('Successfully enrolled in course', 'Close', {
                   duration: 3000,
                   verticalPosition: 'top'
                 });
@@ -132,7 +125,7 @@ export class CourseManagementComponent implements OnInit {
               },
               (error) => {
                 console.error('Error adding enrollment:', error);
-                this.snackbar.open('Failed to enroll in course', 'Close', {
+                this.snackBar.open('Failed to enroll in course', 'Close', {
                   duration: 3000,
                   verticalPosition: 'top'
                 });
@@ -142,10 +135,15 @@ export class CourseManagementComponent implements OnInit {
         },
         (error: any) => {
           console.error('Error checking enrollment status:', error);
-          this.snackbar.open('Failed to check enrollment status', 'Close', {
+          this.snackBar.open('Failed to check enrollment status', 'Close', {
             duration: 3000,
             verticalPosition: 'top'
           });
+        }
+      );
+    }
+  }
+
   enrollInCourse(): void {
     if (this.selectedCourse) {
       this.courseService.enrollInCourse(this.selectedCourse.courseID).subscribe(
@@ -164,8 +162,6 @@ export class CourseManagementComponent implements OnInit {
       );
     } else {
       console.error('No course selected for enrollment.');
-    }
-  }
     }
   }
 
@@ -190,8 +186,6 @@ export class CourseManagementComponent implements OnInit {
         });
       },
       (error: any) => {
-        alert('Failed to delete course. Please try again later.');
-      (error) => {
         this.snackBar.open('Failed to delete course. Please try again later.', 'Close', {
           duration: 3000,
           verticalPosition: 'top' // Set position to top
