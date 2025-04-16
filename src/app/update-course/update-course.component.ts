@@ -47,6 +47,8 @@ export class UpdateCourseComponent implements OnInit {
       (response) => {
         this.snackBar.open('Course updated successfully', 'Close', {
           duration: 3000,
+          horizontalPosition:"center",
+          verticalPosition :"top"
         });
         this.router.navigate(['/course-management']);
       },

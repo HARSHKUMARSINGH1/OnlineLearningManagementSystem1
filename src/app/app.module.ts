@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule, Routes } from '@angular/router'; // Import RouterModule
-import { RouterModule, Routes } from '@angular/router';
 import { UpdateCourseComponent } from './update-course/update-course.component';
 import { AppComponent } from './app.component';
 import { CourseManagementComponent } from 'src/app/course-management/course-management.component';
@@ -15,7 +14,6 @@ import { QuizService } from './services/quiz.service';
 import { QuizAttemptComponent } from './quiz-attempt/quiz-attempt.component';
 import { StudentAnswerComponent } from './components/student-answer/student-answer.component';
 import { AppRoutingModule } from './app-routing.module'; // Import AppRoutingModule
-
 import { MatSnackBarModule } from '@angular/material/snack-bar'; // Import MatSnackBarModule
 
 // Define routes
@@ -35,11 +33,8 @@ import { ViewProfileComponent } from './user/viewprofile/viewprofile.component';
 import { UpdateProfileComponent } from './user/updateprofile/updateprofile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
-import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz-attempt.component';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -72,30 +67,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    ToastrModule.forRoot(),
     ReactiveFormsModule
   ],
 
-    
-    
-  
-    ReactiveFormsModule,
-    MatSnackBarModule,
-    BrowserAnimationsModule // Add MatSnackBarModule here
-  ],
   providers: [
     CourseManagementService,QuizService,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorInterceptor,
     multi: true // Allows multiple interceptors
   }],
-    CourseManagementService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorInterceptor,
-      multi: true // Allows multiple interceptors
-    }
-  ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

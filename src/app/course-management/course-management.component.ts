@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { CourseManagementService } from 'src/app/services/course-management.service';
 import { AuthService } from 'src/app/services/auth.service'; // Import AuthService
 import { ICourse } from 'src/app/models/course-model';
-import { jwtDecode }from 'jwt-decode'; // Correct import
+import { jwtDecode } from 'jwt-decode'; // Correct import
 import { MatSnackBar } from '@angular/material/snack-bar'; // Import MatSnackBar
 
 @Component({
@@ -70,7 +70,12 @@ export class CourseManagementComponent implements OnInit {
   }
 
   navigateToUpdateCourse(course: ICourse): void {
-    this.router.navigate(['/update-course', course.courseID]);
+    this.router.navigate(['/update-course', course.courseID]).then(() => {
+      this.snackBar.open('Navigated to update course successfully', 'Close', {
+        duration: 3000,
+        verticalPosition: 'top' // Set position to top
+      });
+    });
   }
 
   navigateToListAllQuiz(): void {
