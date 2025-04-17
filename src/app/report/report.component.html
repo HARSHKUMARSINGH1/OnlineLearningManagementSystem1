@@ -1,0 +1,46 @@
+<div class="report-container">
+  <h1>Student Progress Report</h1>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Progress ID</th>
+        <th>User ID</th>
+        <th>Course ID</th>
+        <th>Completed Lessons</th>
+        <th>Quiz Scores</th>
+        <th>Actions</th> <!-- Edit/Save button -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of reports; let i = index">
+        <td>{{ item.progressID }}</td>
+        <td>{{ item.userID }}</td>
+        <td>{{ item.courseID }}</td>
+        
+        <!-- Toggle between text and input for Completed Lessons -->
+        <td>
+          <span *ngIf="!item.isEditing">{{ item.completedLessons }}</span>
+          <input *ngIf="item.isEditing" [(ngModel)]="item.completedLessons" class="form-control" />
+        </td>
+
+        <!-- Toggle between text and input for Quiz Scores -->
+        <td>
+          <span *ngIf="!item.isEditing">{{ item.quizScores }}</span>
+          <input *ngIf="item.isEditing" [(ngModel)]="item.quizScores" type="number" class="form-control" />
+        </td>
+        
+        <td>
+          <!-- Edit and Save buttons -->
+          <button *ngIf="!item.isEditing" class="btn btn-primary btn-sm" (click)="editItem(i)">Edit</button>
+          <button *ngIf="item.isEditing" class="btn btn-success btn-sm" (click)="saveItem(i)">Save</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- GO BACK Button -->
+  <div class="go-back-container">
+    <button class="btn btn-secondary" [routerLink]="['/course-management']">GO BACK</button>
+  </div>
+</div>

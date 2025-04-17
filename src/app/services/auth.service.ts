@@ -58,4 +58,21 @@ export class AuthService {
     }
     return throwError('Something bad happened; please try again later.');
   }
+
+  getLoggedInUser(): { id: number; role: string } | null {
+    const token = localStorage.getItem('jwtToken'); // Assume token is stored in localStorage
+    if (token) {
+      try {
+        const decodedToken: any = jwtDecode(token);
+        return {
+          id: decodedToken.id,
+          role: decodedToken.role,
+        };
+      } catch (error) {
+        console.error('Error decoding JWT token:', error);
+        return null;
+      }
+    }
+    return null;
+  }
 }

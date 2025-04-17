@@ -15,6 +15,8 @@ import { UpdateProfileComponent } from './user/updateprofile/updateprofile.compo
 import { AuthGuard } from './authguard';
 import { UpdateCourseComponent } from 'src/app/update-course/update-course.component'
 import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz-attempt.component';
+import { TrackStudentProgressComponent } from './track-student-progress/track-student-progress.component';
+import { ReportComponent } from './report/report.component';
 import { EnrollmentAndAccessComponent } from './enrollment-and-access/enrollment-and-access.component';
 
 const routes: Routes = [
@@ -31,10 +33,11 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path : 'course-management', component: CourseManagementComponent },
   { path: 'profile', component: ViewProfileComponent },
   { path: 'update-profile', component: UpdateProfileComponent },
   { path: 'update-course/:id', component: UpdateCourseComponent },
+  { path: 'track-student-progress', component: TrackStudentProgressComponent},
+  { path: 'report', component: ReportComponent}
   { path: '', redirectTo: '/course-management', pathMatch: 'full' },
   { path: '', redirectTo: '/course-management', pathMatch: 'full' },
   { path: 'enrollment-and-access', component: EnrollmentAndAccessComponent },

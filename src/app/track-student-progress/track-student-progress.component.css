@@ -1,0 +1,158 @@
+/* Background styling */
+html, body {
+  background-color: #f8f9fa; /* Light grey background */
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Container styling and overall layout */
+.track-student-progress-container {
+  background-image: url('/assets/images/20944387.jpg'); /* Path to your image */
+  background-size: cover; /* Ensure the image covers the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  height: 100vh; /* Adjust height as needed */
+  width: 100%; /* Set full width */
+  padding: 20px; /* Add padding if needed */
+  color: rgb(15, 14, 14); /* Optional: Set text color for readability */
+}
+
+
+/* Header styling */
+.header-title {
+  text-align: center;
+  color: #01070f; /* Blue text */
+  margin-bottom: 1.5rem;
+}
+
+/* Form styling */
+.track-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.5rem auto;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #007bff; /* Blue labels */
+}
+
+.form-field input[type="number"] {
+  width: 250px;
+  padding: 0.75rem;
+  border: 1px solid #007bff; /* Blue border */
+  border-radius: 5px; /* Slightly rounded input fields */
+  transition: border-color 0.3s;
+  text-align: center;
+}
+
+/* Button styling */
+.track-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff; /* Blue button */
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.track-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-2px);
+}
+
+/* Progress data results */
+.progress-results {
+  margin-top: 2rem;
+}
+
+.progress-results h2 {
+  text-align: center;
+  color: #007bff; /* Blue text */
+  margin-bottom: 1rem;
+}
+
+/* Cards grid layout for progress records */
+.progress-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
+
+/* Individual card styling */
+.progress-card {
+  background-color: #ffffff; /* White background */
+  border: 1px solid #007bff; /* Blue border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.progress-card h3 {
+  margin-top: 0;
+  color: #007bff; /* Blue text */
+}
+
+.progress-card p {
+  margin: 0.5rem 0;
+  color: #150113;
+  font-size: 0.95rem;
+}
+
+.progress-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* GO BACK Button styling */
+.go-back-container {
+  text-align: center; /* Centers the button horizontally */
+  margin-top: 2rem; /* Adds space above the button */
+}
+
+.go-back-container .btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff; /* Blue button */
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.go-back-container .btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .track-student-progress-container {
+    padding: 10px;
+  }
+  .progress-cards {
+    grid-template-columns: 1fr;
+  }
+
+  /* Centering GO BACK button for mobile devices */
+  .go-back-container {
+    margin-top: 20px;
+  }
+}

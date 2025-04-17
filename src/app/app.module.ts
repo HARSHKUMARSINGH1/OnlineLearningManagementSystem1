@@ -23,6 +23,13 @@ import { EnrollmentAndAccessService } from './services/enrollment-and-access.ser
 
 
 import { MatSnackBarModule } from '@angular/material/snack-bar'; // Import MatSnackBarModule
+import { AppRoutingModule } from './app-routing.module'; // Import AppRoutingModule
+
+import { TrackStudentProgressComponent } from './track-student-progress/track-student-progress.component';
+import { ReportComponent } from './report/report.component';
+import { TrackStudentService } from './services/track-student.service';
+import { ReportService } from './services/report.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 const routes: Routes = [
   { path: 'course-management', component: CourseManagementComponent },
@@ -34,6 +41,11 @@ const routes: Routes = [
   
   { path: 'update-course/:id', component: UpdateCourseComponent },
   { path: '', redirectTo: '/course-management', pathMatch: 'full' }
+  { path: 'update-course/:id', component: UpdateCourseComponent }, // Add this route
+  { path: '', redirectTo: '/course-management', pathMatch: 'full' },
+  { path: '', redirectTo: '/course-management', pathMatch: 'full' },
+  { path: 'track-student-progress', component: TrackStudentProgressComponent},
+  { path: 'report', component: ReportComponent}
 ];
 
 import { AuthModule } from './auth/auth.module';
@@ -48,6 +60,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz-attempt.component';
+
 
 
 
@@ -69,12 +82,16 @@ import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz
     UpdateCourseComponent,
     StudentQuizAttemptComponent,
     EnrollmentAndAccessComponent
+    StudentQuizAttemptComponent,
+    UpdateCourseComponent,
+    AddCourseComponent,
+    TrackStudentProgressComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    MatTableModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
     AuthModule,
@@ -82,24 +99,32 @@ import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatTableModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
     ReactiveFormsModule,
     CommonModule,
     ReactiveFormsModule
+    MatSnackBarModule
   ],
     
     
   
 
+    
+    
+  
   providers: [
     CourseManagementService,EnrollmentAndAccessService,QuizService,{
+    
+    CourseManagementService,TrackStudentService, QuizService, ReportService,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorInterceptor,
     multi: true // Allows multiple interceptors
   }],
     
   
+    // Add RouterModule her
   bootstrap: [AppComponent]
 })
 export class AppModule { }
