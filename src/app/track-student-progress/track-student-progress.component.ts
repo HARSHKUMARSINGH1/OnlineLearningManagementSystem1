@@ -11,7 +11,10 @@ export class TrackStudentProgressComponent implements OnInit {
   // Variable to hold the entered user id
   userId!: number;
   // Variable to store fetched progress data
-  progressData: any;
+  
+
+    progressData: any[] = []; 
+
 
   // Inject MatSnackBar in the constructor
   constructor(

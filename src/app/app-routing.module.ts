@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'update-profile', component: UpdateProfileComponent },
   { path: 'update-course/:id', component: UpdateCourseComponent },
   { path: 'track-student-progress', component: TrackStudentProgressComponent},
-  { path: 'report', component: ReportComponent}
+  { path: 'report', component: ReportComponent},
   { path: '', redirectTo: '/course-management', pathMatch: 'full' },
   { path: '', redirectTo: '/course-management', pathMatch: 'full' },
   { path: 'enrollment-and-access', component: EnrollmentAndAccessComponent },

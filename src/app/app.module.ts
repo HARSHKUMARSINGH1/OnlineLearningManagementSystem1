@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule, Routes } from '@angular/router'; // Import RouterModule
 import { UpdateCourseComponent } from './update-course/update-course.component';
-import { AppRoutingModule } from './app-routing.module';
+
 import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
@@ -22,7 +22,7 @@ import { EnrollmentAndAccessComponent } from './enrollment-and-access/enrollment
 import { EnrollmentAndAccessService } from './services/enrollment-and-access.service';
 
 
-import { MatSnackBarModule } from '@angular/material/snack-bar'; // Import MatSnackBarModule
+// Import MatSnackBarModule
 import { AppRoutingModule } from './app-routing.module'; // Import AppRoutingModule
 
 import { TrackStudentProgressComponent } from './track-student-progress/track-student-progress.component';
@@ -40,7 +40,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/course-management', pathMatch: 'full' },
   
   { path: 'update-course/:id', component: UpdateCourseComponent },
-  { path: '', redirectTo: '/course-management', pathMatch: 'full' }
+  { path: '', redirectTo: '/course-management', pathMatch: 'full' },
   { path: 'update-course/:id', component: UpdateCourseComponent }, // Add this route
   { path: '', redirectTo: '/course-management', pathMatch: 'full' },
   { path: '', redirectTo: '/course-management', pathMatch: 'full' },
@@ -73,7 +73,6 @@ import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz
     ListAllQuizComponent,
     QuizAttemptComponent,
     StudentAnswerComponent,
-    AddCourseComponent,
     CourseManagementComponent,
     FooterComponent,
     HeaderComponent,
@@ -81,8 +80,7 @@ import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz
     UpdateProfileComponent,
     UpdateCourseComponent,
     StudentQuizAttemptComponent,
-    EnrollmentAndAccessComponent
-    StudentQuizAttemptComponent,
+    EnrollmentAndAccessComponent,
     UpdateCourseComponent,
     AddCourseComponent,
     TrackStudentProgressComponent,
@@ -104,7 +102,7 @@ import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz
     MatSnackBarModule,
     ReactiveFormsModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
     MatSnackBarModule
   ],
     
@@ -115,9 +113,9 @@ import { StudentQuizAttemptComponent } from './student-quiz-attempt/student-quiz
     
   
   providers: [
-    CourseManagementService,EnrollmentAndAccessService,QuizService,{
     
-    CourseManagementService,TrackStudentService, QuizService, ReportService,{
+    
+    CourseManagementService,EnrollmentAndAccessService,TrackStudentService, QuizService, ReportService,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorInterceptor,
     multi: true // Allows multiple interceptors

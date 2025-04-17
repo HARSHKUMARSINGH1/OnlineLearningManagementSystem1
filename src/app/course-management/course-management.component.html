@@ -7,31 +7,14 @@
       <ng-container *ngIf="userType === 'Instructor'">
         <button class="dropdown-item" [routerLink]="['/add-course']">Create Course</button>
         <button class="dropdown-item" [routerLink]="['/list-all-quiz']">Create Quiz</button>
-        <button class="dropdown-item">Report</button>
-        <button class="dropdown-item">Progress Tracking</button>
+        <button class="dropdown-item"[routerLink]="['/report']">Report</button>
+        <button class="progress-btn" [routerLink]="['/track-student-progress']">Progress Tracking</button>
       </ng-container>
       <ng-container *ngIf="userType === 'Student'">
-        <button class="enrollment-btn" [routerLink]="['/enrollment-and-access']" [queryParams]="{ userId: userId }">Enrolled Courses</button>        <button class="dropdown-item" [routerLink]="['/student-answer']">Quiz</button>
-        <button class="dropdown-item">Progress Tracking</button>
+        <button class="enrollment-btn" [routerLink]="['/enrollment-and-access']" [queryParams]="{ userId: userId }">Enrolled Courses</button> 
+        <button class="dropdown-item" [routerLink]="['/student-answer']">Quiz</button>
+        <button class="progress-btn" [routerLink]="['/track-student-progress']">Progress Tracking</button>
       </ng-container>
-      <button *ngIf="userType === 'Instructor'" class="dropdown-item" [routerLink]="['/add-course']">Create Course</button>
-      <button *ngIf="userType === 'Instructor'" class="dropdown-item" [routerLink]="['/list-all-quiz']">Create Quiz</button>
-      <button *ngIf="userType === 'Instructor'" class="report-btn" [routerLink]="['/report']">Report</button>
-      <button *ngIf="userType === 'Instructor'" class="progress-btn" [routerLink]="['/track-student-progress']">Progress Tracking</button>
-      <button *ngIf="userType === 'Student'" class="dropdown-item">Enrolled Courses</button>
-      <button *ngIf="userType === 'Student'" class="dropdown-item" [routerLink]="['/student-answer']">Quiz</button>
-      <button *ngIf="userType === 'Student'" class="dropdown-item">Progress Tracking</button>
-      <button class="create-course-btn" [routerLink]="['/add-course']">Create Course</button>
-      <button class="create-quiz-btn">Create Quiz</button>
-      <button class="progress-btn" [routerLink]="['/track-student-progress']">Progress Tracking</button>
-    </div>
-  </div>
-  <div *ngIf="userType === 'Student'" class="dropdown">
-    <button class="dropdown-btn">☰</button>
-    <div class="dropdown-content">
-      <button class="enrollment-btn">Enrolled Courses</button>
-      <button class="quiz-btn">Quiz</button>
-      <button class="progress-btn" [routerLink]="['/track-student-progress']">Progress Tracking</button>
     </div>
   </div>
 </header>
