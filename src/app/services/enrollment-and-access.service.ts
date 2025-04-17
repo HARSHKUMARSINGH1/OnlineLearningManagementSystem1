@@ -27,6 +27,9 @@ export class EnrollmentAndAccessService {
     return this.http.post(this.apiUrl, { courseID });
   }
 
+  
+
+    progressData: any[] = []; 
   isUserEnrolled(courseId: number, userId: string): Observable<boolean> {
     return this.http.get<boolean>(`${this.apiUrl}/isEnrolled/${courseId}/${userId}`);
   }

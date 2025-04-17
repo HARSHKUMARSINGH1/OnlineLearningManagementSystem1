@@ -11,7 +11,8 @@ import { EnrollmentDto } from '../models/enrollment.dto';
 @Component({
   selector: 'app-course-management',
   templateUrl: './course-management.component.html',
-  styleUrls: ['./course-management.component.css']
+  styleUrls: ['./course-management.component.css'],
+  standalone:false
 })
 export class CourseManagementComponent implements OnInit {
   userType: string = ''; 
